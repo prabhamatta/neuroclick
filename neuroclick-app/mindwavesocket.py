@@ -137,6 +137,12 @@ def index():
     """
     return render_template('index.html')
 
+@app.route('/expt')
+def expt():
+    """
+    show index
+    """
+    return render_template('expt.html')
 
 @app.route('/socket.io/<path:remaining>')
 def socketio(remaining):

@@ -1,79 +1,25 @@
-var longvalid = false;
-var shortvalid = true;
 
-//Validate long URL
-var validatelong = function(){
-	if ($('#long').val() === ''){
-			longvalid= false;
-			$('button[name="createbutton"]')[0].disabled = true;
-			return;
 
-		}
-		else{
-			longstr = $('#long').val();
-			var re = /http:+\S+/;
-			if (!re.test(longstr)){
-			 	$("#longerror").text("long URL format should be http://...com");
-			 	longvalid = false;
-			 	$('button[name="createbutton"]')[0].disabled = true;
-			 	return;
-			 }		
-		};
-
-		$("#longerror").text("");
-		longvalid = true;
-		if (longvalid == true && shortvalid ==true){
-			$('button[name="createbutton"]')[0].disabled = false ;
-		}
-}
-
-// Validate Shortpath for Creation
-var validateshort = function(){
-	if ($('#short').val() != ''){
-		shortstr = $('#short').val();
-		var re = /^[A-Za-z]+$/;
-		 if (!re.test(shortstr)){
-		 	$("#shorterror").text("Shortpath can only take alphabets");
-		 	$('button[name="createbutton"]')[0].disabled = true;
-		 	shortvalid = false;
-		 	return ;
+function validateOnCreate(){
+	if (document.createform.long.value == '') {
+		alert ("Long path is a required field. Please try again");
+	        return false;
+	}
+	else{
+		longstr = document.createform.long.value
+		var re = /http:+\S+\.com+/;
+		if (!re.test(longstr)){
+		 		alert("Please enter correct long URL in the format http://...com");
+		 	return false;
 		 }
 	}
-	$("#shorterror").text("");
-	shortvalid = true;
-	if (longvalid == true && shortvalid ==true){
-		$('button[name="createbutton"]')[0].disabled = false ;
-	}
+	
 
-}
-
-// validate shortpath for Deletion
-var validateshortdelete = function(){
-
-	if ($('#shortdelete').val() === ""){
-			$('button[name="deletebutton"]')[0].disabled = true;
-		 	return ;
-
-		};
-
-		$("#shortdelerror").text("");
-		$('button[name="deletebutton"]')[0].disabled = false;
-
-};
-
-$(function(){
-	$('#long').focusout(validatelong);
-	$('#short').focusout(validateshort);
-	$('#shortdelete').focusout(validateshortdelete);
-})
-
-
-//Ask the user if he/she wants shortpath to be created automatically
-function validateOnCreate(){
-
-    if (document.createform.short.value === '') {
+    if (document.createform.short.value == '') {
        var x=confirm("You have not entered short path. Do you want it to be automatically created?");
 		if (x ==true){
+			// document.createform.short.value = getShortValue();
+			// alert ("Short path created ",document.createform.short.value);
 			return true;
 		}	
 		else{
@@ -81,6 +27,36 @@ function validateOnCreate(){
 		}
         
     }
+    else{
+		shortstr = document.createform.short.value;
+		var re = /^[A-Za-z]+$/;
+		 if (!re.test(shortstr)){
+		 	alert ("Short path can only take alphabets. Please try again");
+		 	return false;
+		 }
+	}
     return true;
 
 }
+
+function getShortValue() {
+	var chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	var string_length = 5;
+	var randomstring = '';
+	for (var i=0; i<string_length; i++) {
+		var rnum = Math.floor(Math.random() * chars.length);
+		randomstring += chars.substring(rnum,rnum+1);
+	}
+	return randomstring;
+}
+
+function validateOnDelete(){
+
+  if (document.deleteform.short1.value == '') {
+		alert ("Short URL is a required field. Please try again");
+	    return false;
+	}
+return true
+
+}
+

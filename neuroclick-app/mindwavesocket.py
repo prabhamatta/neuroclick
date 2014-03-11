@@ -23,6 +23,8 @@ app.debug = True
 #db = SQLAlchemy(app)
 
 
+FLAG_STATUS = False
+
 # connect to the headset
 hs = None
 hs = headset.Headset('/dev/tty.MindWaveMobile-DevA')
@@ -50,16 +52,27 @@ def raw_to_spectrum(rawdata):
 
 
 class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
-    def initialize(self):
+    def initialize(self, flag_status = True):
         self.logger = app.logger
         self.log("Socketio session started")
+        self.fout = open("dummy.txt","w")
 
     def log(self, message):
         self.logger.info("[{0}] {1}".format(self.socket.sessid, message))
 
+    def set_flag(self, status):
+        self.flag = status
+        
     def recv_connect(self):
+        #with open("test.txt","w") as ftest:
+        #ftest.write("Helloworld\n")
+        #ftest.close()
+        
+    
         def send_metrics():
             global hs
+            global FLAG_STATUS
+            
             while True:
                 t = time.time()
                 waves_vector = hs.get('waves_vector')
@@ -67,6 +80,10 @@ class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
                 attention = hs.get('attention')
                 spectrum = raw_to_spectrum(hs.get('rawdata')).tolist()
                 #print spectrum
+                if FLAG_STATUS:
+                    self.fout.write(str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal))
+                    print str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal)
+                    
                 self.emit('second_metric', {
                     'timestamp': t,
                     'meditation': {
@@ -120,6 +137,7 @@ class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         # Remove nickname from the list.
         self.log('Disconnected')
         self.disconnect(silent=True)
+        self.fout.close()
         return True
 
 
@@ -143,6 +161,15 @@ def expt():
     show index
     """
     return render_template('expt.html')
+
+@app.route('/startcall', methods = ["GET"])
+def startbutton():
+    """
+    show index
+    """
+    global FLAG_STATUS
+    FLAG_STATUS = True
+    return "some text"
 
 @app.route('/socket.io/<path:remaining>')
 def socketio(remaining):

@@ -44,7 +44,8 @@ def create():
         print("Short provided....",shorturl)
 
 
-        """ check if shortpath for that long URL already exists in db"""
+
+        """ check if shortpath already exists in db"""
         for k, v in db.items():
             if v == str(longurl):
                 print("FOUND")
@@ -55,7 +56,7 @@ def create():
                 print("dbclicks....",clicks)
                 dbclicks[str(shorturl)] = int(clicks)+1
 
-                mesg = "Short path for "+str(longurl)+" already exists as "+str(shorturl)+"... Number of clicks (attempts to shorten this url): "+ str(clicks+1)
+                mesg = "Short path for "+str(longurl)+" already exits as "+str(shorturl)+"... No. of clicks(attempts to shorten this url): "+ str(clicks+1)
                 return flask.render_template(
                                         'output.html',
                                         message = mesg,
@@ -63,24 +64,10 @@ def create():
                                         imglink = 'static/img/hurray.gif')
 
 
-        """ check if the shortpath is already used for other in db"""
-        shortexists = db.get(str(shorturl), MISSING_PAGE)
-        print("shortexists....",shortexists)
-        if shortexists != MISSING_PAGE:
-            mesg = "shortpath "+str(shorturl) +" is already assigned to a long URL. Choose another shortpath"
-            return flask.render_template(
-                                'output.html',
-                                message = mesg,
-                                header = '"Hurray!!"',
-                                imglink = 'static/img/hurray.gif')
-
-        """ create short path automatically if it is not given"""
         if shorturl=="":
             shorturl = ''.join(rn.choice(string.ascii_letters) for x in range(6))
         mesg = "Short path created for "+str(longurl)+" : "+str(shorturl)
         print("Short assigned....",shorturl)
-
-
         """ create short path for url """
         db[str(shorturl)] = str(longurl)
         dbclicks[str(shorturl)] = 1
@@ -128,7 +115,7 @@ def destroy():
         print("Entered DELETE")
         print("request.form==", request.form)
         print("request.args==", request.args)
-        shorturl = request.form.get('shortdelete', "")
+        shorturl = request.form.get('short', "")
         print("Short provided....",shorturl)
         longurl = db.get(str(shorturl),None)
         print("Long from db....",longurl)

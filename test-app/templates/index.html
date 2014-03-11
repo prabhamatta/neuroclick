@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title>Web Architecture</title>
+    <!-- Bootstrap -->
+    <link href="server/static/css/main.css" rel="stylesheet">
+     <link href="server/static/css/bootstrap.css" rel="stylesheet">
+     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="server/static/js/main.js"></script>
+</head>
+
+<body>
+    <div id = "container">
+         <div id="header">
+                <h1>Prabha's Test Server Application</h1>
+         </div><!-- close header -->
+         <div class = 'myform'> <!-- create Form -->
+          <br>
+             <form name='createform' class="form-horizontal" onSubmit="return validateOnCreate()" action="server/create" method="POST">
+                <h4>Create a Short URL</h4>
+                <div class="control-group">
+                      <label for="short"><strong class="control-label">Short Path </strong></label>
+                      <input type="text"  name="short" id="short" value="">
+                      <span class="errormesg" id="shorterror"></span>
+                </div>
+                <div class="control-group">
+                      <label for="long"><strong class="control-label">Long Path (URL)<span class="star"> * </span></strong></label>
+                      <input type="text" name="long" id="long" value ="">
+                      <span class="errormesg" id="longerror"></span>
+                </div >
+                <div class="controls">
+                      <button type="submit" name="createbutton"  disabled="disabled" class="btn">Create Short URL</button>
+                </div>
+                <br>
+              </form>
+          </div> <!--End of create Form -->
+          <div  class = 'myform'> <!-- Delete Form -->
+            <br>
+               <form name='deleteform' class="form-horizontal"  onSubmit="return validateOnDelete()"  action="server/delete" method="POST">
+                 <h4>Delete a Short URL</h4>
+                <div class="control-group">
+                      <label for="shortdelete"><strong class="control-label">Short Path<span class="star"> * </span></strong></label>
+                      <input type="text"  name="shortdelete" id="shortdelete" value="">
+                      <span class="errormesg" id="shortdelerror"></span>
+                </div>
+            
+                <div class="controls">
+                      <button type="submit" name="deletebutton" disabled="disabled" class="btn">Delete Short URL</button>
+                </div>
+                  <br>
+              </form>
+        </div> <!-- End of create Form -->
+        <div id ="footer">
+          This page allows you to create a shortpath for a URL and also delete an existing shortpath.
+          If you are lazy, the page automatically creates a shortpath for a given URL.
+
+        </div>
+    </div>
+ 
+</body>
+</html>

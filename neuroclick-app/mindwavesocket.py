@@ -8,6 +8,7 @@ from socketio.mixins import RoomsMixin, BroadcastMixin
 from werkzeug.exceptions import NotFound
 import gevent
 from gevent import monkey
+import atexit
 
 from flask import Flask, Response, request, render_template, url_for, redirect
 
@@ -22,8 +23,10 @@ app.debug = True
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/chat.db'
 #db = SQLAlchemy(app)
 
-
+fname = "dummy1.txt"
 FLAG_STATUS = False
+fout = None 
+
 
 # connect to the headset
 hs = None
@@ -52,10 +55,14 @@ def raw_to_spectrum(rawdata):
 
 
 class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
+    #def __init__(self, *a, **k):
+        #super(MindWaveNamespace, self).__init__(*a, **k)
+        ##atexit.register(self.recv_disconnect)
+        
+        
     def initialize(self, flag_status = True):
         self.logger = app.logger
         self.log("Socketio session started")
-        self.fout = open("dummy.txt","w")
 
     def log(self, message):
         self.logger.info("[{0}] {1}".format(self.socket.sessid, message))
@@ -72,6 +79,7 @@ class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         def send_metrics():
             global hs
             global FLAG_STATUS
+            global fout
             
             while True:
                 t = time.time()
@@ -81,7 +89,7 @@ class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
                 spectrum = raw_to_spectrum(hs.get('rawdata')).tolist()
                 #print spectrum
                 if FLAG_STATUS:
-                    self.fout.write(str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal))
+                    fout.write(str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal))
                     print str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal)
                     
                 self.emit('second_metric', {
@@ -137,7 +145,6 @@ class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
         # Remove nickname from the list.
         self.log('Disconnected')
         self.disconnect(silent=True)
-        self.fout.close()
         return True
 
 
@@ -155,21 +162,25 @@ def index():
     """
     return render_template('index.html')
 
-@app.route('/expt')
+@app.route('/start')
 def expt():
     """
     show index
     """
-    return render_template('expt.html')
+    return render_template('start.html')
 
 @app.route('/startcall', methods = ["GET"])
 def startbutton():
     """
     show index
     """
+    global fout
     global FLAG_STATUS
+    
+    fout = open(fname,"w")
     FLAG_STATUS = True
-    return "some text"
+    return render_template('expt.html')
+
 
 @app.route('/socket.io/<path:remaining>')
 def socketio(remaining):
@@ -180,6 +191,13 @@ def socketio(remaining):
                          exc_info=True)
     return Response()
 
-
+ 
+def onexit():
+    global fout 
+    print "Exiting..."
+    fout.close()
+    
 if __name__ == '__main__':
+    import atexit
+    atexit.register(onexit)
     app.run(port=7000)

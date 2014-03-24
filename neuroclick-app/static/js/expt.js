@@ -3,15 +3,7 @@
 // jQuery $('document').ready(); function
 $('document').ready(function(){
 
-    // Calling LayerSlider on your selected element after the document loaded
-   	$('#layerslider').layerSlider({autoStart: false});
-   	$('#layerslider').hide();
 
-	$('#startbutton').click(function(){
-		$.ajax({
-			  url: "/startcall",
-			}).done(function() {
-				$('#layerslider').show();
 
 			 $('#layerslider').layerSlider({
 		 
@@ -67,13 +59,8 @@ $('document').ready(function(){
 
 			});
 
-			$('#startbutton').hide();
+
+  
 
 		});
 
-
-	})
-    
-	
-
-});

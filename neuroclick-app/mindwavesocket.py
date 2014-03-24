@@ -99,6 +99,7 @@ class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
                     print str(t) + "\t" + str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal)
                     F_SPECTRUM.write(str(t) + "\t" + str(spectrum)+"\n")
                     F_ALL_DATA.write(str(t) + "\t" + str(waves_vector[0] )+ "\t" + str(waves_vector[1]) +"\t" + str(waves_vector[2] )+ "\t" + str(waves_vector[3]) +"\t" + str(waves_vector[4] )+ "\t" + str(waves_vector[5])+ "\t" + str(waves_vector[6])+ "\t" + str(waves_vector[7]) +"\n")
+                
                 self.emit('second_metric', {
                     'timestamp': t,
                     'meditation': {
@@ -176,6 +177,15 @@ def expt():
     """
     return render_template('start.html')
 
+
+
+@app.route('/basic')
+def basic():
+    """
+    show index
+    """
+    return render_template('basic.htm')
+
 @app.route('/startcall', methods = ["GET","POST"])
 def startbutton():
     """
@@ -203,6 +213,7 @@ def startbutton():
     
     F_ATT_MED = open(DATA_DIR + "/att_med.txt","w")
     F_SPECTRUM = open(DATA_DIR + "/spectrum.txt","w")
+    F_ALL_DATA = open(DATA_DIR + "/all_data.txt","w")
     
     print "AFTER creating...",F_ATT_MED
     FLAG_STATUS = True

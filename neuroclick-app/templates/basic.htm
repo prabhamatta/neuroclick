@@ -11,7 +11,7 @@
     //		Styles
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////--> 
-    <link rel='stylesheet' id='camera-css'  href='../css/camera.css' type='text/css' media='all'> 
+    <link rel='stylesheet' id='camera-css'  href='static/css/camera.css' type='text/css' media='all'> 
     <style>
 		body {
 			margin: 0;
@@ -31,10 +31,11 @@
 			padding: 20px;
 		}
 		.fluid_container {
-			margin: 0 auto;
+			margin: 10px auto;
 			max-width: 1000px;
 			width: 90%;
 		}
+
 	</style>
 
     <!--///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,10 +44,10 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////////////////--> 
     
-    <script type='text/javascript' src='../scripts/jquery.min.js'></script>
-    <script type='text/javascript' src='../scripts/jquery.mobile.customized.min.js'></script>
-    <script type='text/javascript' src='../scripts/jquery.easing.1.3.js'></script> 
-    <script type='text/javascript' src='../scripts/camera.js'></script> 
+    <script type='text/javascript' src='static/js/jquery.min.js'></script>
+    <script type='text/javascript' src='static/js/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='static/js/jquery.easing.1.3.js'></script> 
+    <script type='text/javascript' src='static/js/camera.js'></script> 
     
     <script>
 		jQuery(function(){
@@ -57,7 +58,8 @@
                 pagination: false,
                 fx:'scrollRight',
                 slideOn:'next',
-                thumbnail:false
+                thumbnail:false,
+                imagePath : '../static/img/'
 			});
 
 			
@@ -69,43 +71,39 @@
 
 	<div class="fluid_container">
         <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
-            <div data-src="../images/slides/bridge.jpg" data-transPeriod="1000">
-                <div class="camera_caption fadeFromBottom">
-                    Camera is a responsive/adaptive slideshow. <em>Try to resize the browser window</em>
-                </div>
+            <div data-src="static/img/pic6.jpg" data-transPeriod="1000">
             </div>
 
-            <div    data-time="58000" data-transPeriod="2000" data-thumb="../images/blank.gif" data-src="../images/blank.gif" >
-               <iframe src="../videos/cuppycake.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            <div data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/img/applefalling.mp4" width="1000" height="800" frameborder="0" ></iframe>
             </div>
 
 
+<!-- 
+            <div  data-src="static/img/pic1.jpg">
+                
+            </div>
 
-            <div data-thumb="../images/slides/thumbs/leaf.jpg" data-src="../images/slides/leaf.jpg">
-                <div class="camera_caption fadeFromBottom">
-                    It uses a light version of jQuery mobile, <em>navigate the slides by swiping with your fingers</em>
-                </div>
+    
+
+            <div  data-src="static/img/pic2.jpg" data-portrait="false">
+                
             </div>
-            <div data-thumb="../images/slides/thumbs/road.jpg" data-src="../images/slides/road.jpg">
-                <div class="camera_caption fadeFromBottom">
-                    <em>It's completely free</em> (even if a donation is appreciated)
-                </div>
+
+
+            <div data-time="8000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/1starwars3D.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
             </div>
-            <div data-thumb="../images/slides/thumbs/sea.jpg" data-src="../images/slides/sea.jpg">
-                <div class="camera_caption fadeFromBottom">
-                    Camera slideshow provides many options <em>to customize your project</em> as more as possible
-                </div>
+
+            <div  data-src="static/img/pic3.jpg">
+                
             </div>
-            <div data-thumb="../images/slides/thumbs/shelter.jpg" data-src="../images/slides/shelter.jpg">
-                <div class="camera_caption fadeFromBottom">
-                    It supports captions, HTML elements and videos and <em>it's validated in HTML5</em> (<a href="http://validator.w3.org/check?uri=http%3A%2F%2Fwww.pixedelic.com%2Fplugins%2Fcamera%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline&amp;group=0&amp;user-agent=W3C_Validator%2F1.2" target="_blank">have a look</a>)
-                </div>
+            <div data-src="static/img/pic4.jpg">
+                
             </div>
-            <div id="last-slide" data-thumb="../images/slides/thumbs/tree.jpg" data-src="../images/slides/tree.jpg">
-                <div class="camera_caption fadeFromBottom">
-                    Different color skins and layouts available, <em>fullscreen ready too</em>
-                </div>
-            </div>
+            <div id="last-slide" data-src="static/img/pic5.jpg">
+                
+            </div> -->
         </div><!-- #camera_wrap_1 -->
 
     	

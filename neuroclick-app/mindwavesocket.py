@@ -196,6 +196,8 @@ def startbutton():
     global DATA_DIR
     global F_ATT_MED
     global F_SPECTRUM
+    global F_ALL_DATA
+
     
     
     with open("userids.txt", "a+") as fp:
@@ -217,7 +219,7 @@ def startbutton():
     
     print "AFTER creating...",F_ATT_MED
     FLAG_STATUS = True
-    return render_template('expt.html')
+    return render_template('basic.htm')
 
 
 @app.route('/socket.io/<path:remaining>')
@@ -235,6 +237,7 @@ def onexit():
     print "Exiting..."
     F_ATT_MED.close()
     F_SPECTRUM.close()
+    F_ALL_DATA.close()
     
 if __name__ == '__main__':
     import atexit

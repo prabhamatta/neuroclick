@@ -20,8 +20,6 @@ monkey.patch_all()
 
 app = Flask(__name__)
 app.debug = True
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/chat.db'
-#db = SQLAlchemy(app)
 
 fname = "dummy1.txt"
 FLAG_STATUS = False
@@ -162,7 +160,7 @@ def index():
     """
     return render_template('index.html')
 
-@app.route('/start')
+@app.route('/expt')
 def expt():
     """
     show index

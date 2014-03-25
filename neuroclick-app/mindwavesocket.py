@@ -233,7 +233,7 @@ def endexpt():
     show index
     """
     times = request.form["data_key"]
-    print times
+    #print times
     F_SLIDE_TIMESTAMPS.write(times)
     
     # print request.args

@@ -224,10 +224,13 @@ def startbutton():
 
 
 @app.route('/endexpt', methods = ["GET","POST"])
-def endexpt():
+def endexpt(timestamps):
     """
     show index
     """
+
+    print timestamps
+    
     global FLAG_STATUS
     FLAG_STATUS = False
     F_ATT_MED.close()

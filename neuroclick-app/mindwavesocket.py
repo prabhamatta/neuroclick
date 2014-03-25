@@ -170,7 +170,7 @@ def index():
     """
     return render_template('index.html')
 
-@app.route('/expt')
+@app.route('/start')
 def expt():
     """
     show index
@@ -220,6 +220,20 @@ def startbutton():
     print "AFTER creating...",F_ATT_MED
     FLAG_STATUS = True
     return render_template('basic.htm')
+
+
+
+@app.route('/endexpt', methods = ["GET","POST"])
+def endexpt():
+    """
+    show index
+    """
+    global FLAG_STATUS
+    FLAG_STATUS = False
+    F_ATT_MED.close()
+    F_SPECTRUM.close()
+    F_ALL_DATA.close()
+    return ""
 
 
 @app.route('/socket.io/<path:remaining>')

@@ -51,19 +51,39 @@
     
     <script>
 		jQuery(function(){
-			
-			jQuery('#camera_wrap_1').camera({
-                height: '80%',
-                loader: 'none',
-                pagination: false,
-                fx:'scrollRight',
-                slideOn:'next',
-                thumbnail:false,
-                imagePath : '../static/img/'
+			jQuery('#camera_wrap_1').each(function(){
+                var t = jQuery(this);
+                t.camera({
+                    height: '80%',
+                    loader: 'none',
+                    pagination: false,
+                    fx:'scrollRight',
+                    slideOn:'next',
+                    thumbnail:false,
+                    imagePath : '../static/img/',
+
+                    onEndTransition: function(){
+                     console.log(t.find('.cameraContents .cameraContent.cameracurrent + div').index());
+                     if (t.find('.cameraContents .cameraContent.cameracurrent + div').index() == -1){
+                        console.log("CALL HERE");
+                        t.cameraStop();
+                        jQuery.ajax({
+                              url: "/endexpt",
+
+                            }).done(function() {
+                                console.log("Expt Ended!!")
+                            })
+
+                     }
+                }
 			});
 
 			
 		});
+        });
+
+        // jQuery('#last-slide').cameraStop(); //stop the slideshow
+
 	</script>
  
 </head>
@@ -80,7 +100,7 @@
 
 
 
-            <div  data-src="static/img/pic1.jpg">
+           <!--  <div  data-src="static/img/pic1.jpg">
                 
             </div>
 
@@ -100,7 +120,7 @@
             </div>
             <div data-src="static/img/pic4.jpg">
                 
-            </div>
+            </div> -->
             <div id="last-slide" data-src="static/img/pic5.jpg">
                 
             </div>

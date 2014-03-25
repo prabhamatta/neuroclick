@@ -68,7 +68,15 @@
                     onLoaded: function(){
 
                      var ind = t.find('.cameraContents .cameraContent.cameracurrent + div').index();
-                     obj[ind] = new Date(Date.now()).toLocaleString();
+                     var options = {
+                         year: "numeric", month: "short",
+                            day: "numeric", hour: "2-digit", minute: "2-digit", second:"2-digit",hour12: false
+                        };
+
+                    ts = new Date(Date.now()).toLocaleTimeString("en-us", options);
+
+                     // obj[ind] = new Date(Date.now()).toLocaleString();
+                     obj[ind] = ts;
                      console.log("Index of slide " + ind ) ;
                      if (ind == -1){
                         console.log("CALL HERE");

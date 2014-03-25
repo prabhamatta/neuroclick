@@ -31,6 +31,7 @@ FLAG_STATUS = False
 F_ATT_MED = None 
 F_ALL_DATA = None 
 F_SPECTRUM = None
+F_SLIDE_TIMESTAMPS = None 
 
 
 # connect to the headset
@@ -95,10 +96,12 @@ class MindWaveNamespace(BaseNamespace, RoomsMixin, BroadcastMixin):
                 #print spectrum
                 if FLAG_STATUS:
                     #print F_ATT_MED
-                    F_ATT_MED.write(str(t) + "\t" + str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal)+ "\n")
-                    print str(t) + "\t" + str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal)
-                    F_SPECTRUM.write(str(t) + "\t" + str(spectrum)+"\n")
-                    F_ALL_DATA.write(str(t) + "\t" + str(waves_vector[0] )+ "\t" + str(waves_vector[1]) +"\t" + str(waves_vector[2] )+ "\t" + str(waves_vector[3]) +"\t" + str(waves_vector[4] )+ "\t" + str(waves_vector[5])+ "\t" + str(waves_vector[6])+ "\t" + str(waves_vector[7]) +"\n")
+                    timer = time.strftime("%b %d, %Y %H:%M:%S", time.localtime(t))
+                    
+                    F_ATT_MED.write(timer + "\t" + str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal)+ "\n")
+                    print str(attention )+ "\t" + str(meditation) +"\t" + str(hs.parser.poor_signal)
+                    F_SPECTRUM.write(timer + "\t" + str(spectrum)+"\n")
+                    F_ALL_DATA.write(timer + "\t" + str(waves_vector[0] )+ "\t" + str(waves_vector[1]) +"\t" + str(waves_vector[2] )+ "\t" + str(waves_vector[3]) +"\t" + str(waves_vector[4] )+ "\t" + str(waves_vector[5])+ "\t" + str(waves_vector[6])+ "\t" + str(waves_vector[7]) +"\n")
                 
                 self.emit('second_metric', {
                     'timestamp': t,
@@ -197,8 +200,7 @@ def startbutton():
     global F_ATT_MED
     global F_SPECTRUM
     global F_ALL_DATA
-
-    
+    global F_SLIDE_TIMESTAMPS
     
     with open("userids.txt", "a+") as fp:
         fp.seek(0)
@@ -216,6 +218,7 @@ def startbutton():
     F_ATT_MED = open(DATA_DIR + "/att_med.txt","w")
     F_SPECTRUM = open(DATA_DIR + "/spectrum.txt","w")
     F_ALL_DATA = open(DATA_DIR + "/all_data.txt","w")
+    F_SLIDE_TIMESTAMPS = open(DATA_DIR + "/slide_timestamps.txt","w")
     
     print "AFTER creating...",F_ATT_MED
     FLAG_STATUS = True
@@ -224,18 +227,24 @@ def startbutton():
 
 
 @app.route('/endexpt', methods = ["GET","POST"])
-def endexpt(timestamps):
+def endexpt():
+
     """
     show index
     """
-
-    print timestamps
+    times = request.form["data_key"]
+    print times
+    F_SLIDE_TIMESTAMPS.write(times)
+    
+    # print request.args
+    # print timestamps
     
     global FLAG_STATUS
     FLAG_STATUS = False
     F_ATT_MED.close()
     F_SPECTRUM.close()
     F_ALL_DATA.close()
+    F_SLIDE_TIMESTAMPS.close()
     return ""
 
 
@@ -255,6 +264,7 @@ def onexit():
     F_ATT_MED.close()
     F_SPECTRUM.close()
     F_ALL_DATA.close()
+    F_SLIDE_TIMESTAMPS.close()
     
 if __name__ == '__main__':
     import atexit

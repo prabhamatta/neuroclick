@@ -1,9 +1,0 @@
-root = true
-
-[*.py]
-indent_sytle = space
-indent_size = 4
-
-[*.js]
-indent_sytle = tab
-indent_size = 4

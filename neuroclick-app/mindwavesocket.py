@@ -181,13 +181,41 @@ def expt():
     return render_template('start.html')
 
 
-
-@app.route('/basic')
-def basic():
+@app.route('/test', methods = ["GET","POST"])
+def test():
     """
     show index
     """
-    return render_template('basic.htm')
+    global CUR_DIR
+    global FLAG_STATUS
+    global DATA_DIR
+    global F_ATT_MED
+    global F_SPECTRUM
+    global F_ALL_DATA
+    global F_SLIDE_TIMESTAMPS
+    
+    with open("userids.txt", "a+") as fp:
+        fp.seek(0)
+        last_id = fp.readlines()[-1].strip()
+        print "LAST ID===",last_id
+        next_id = str(int(last_id)+1)
+        fp.write(next_id + "\n") 
+    new_dir = "data/"+str(next_id)
+    print new_dir
+    DATA_DIR = os.path.join(CUR_DIR,new_dir)
+    print DATA_DIR
+    if not os.path.exists(DATA_DIR):
+        os.makedirs(DATA_DIR)    
+    
+    F_ATT_MED = open(DATA_DIR + "/att_med.txt","w")
+    F_SPECTRUM = open(DATA_DIR + "/spectrum.txt","w")
+    F_ALL_DATA = open(DATA_DIR + "/all_data.txt","w")
+    F_SLIDE_TIMESTAMPS = open(DATA_DIR + "/slide_timestamps.txt","w")
+    
+    print "AFTER creating...",F_ATT_MED
+    FLAG_STATUS = True
+    return render_template('test.htm')
+
 
 @app.route('/startcall', methods = ["GET","POST"])
 def startbutton():

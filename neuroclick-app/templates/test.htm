@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!-- Camera is a Pixedelic free jQuery slideshow | Manuel Masia (designer and developer) --> 
+<html> 
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" > 
+    <title>Camera | a free jQuery slideshow by Pixedelic</title> 
+    <meta name="description" content="Camera a free jQuery slideshow with many effects, transitions, adaptive layout, easy to customize, using canvas and mobile ready"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //    Styles
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////--> 
+
+    <script type='text/javascript' src='static/js/jquery.min.js'></script>
+    <script type='text/javascript' src='static/js/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='static/js/jquery.easing.1.3.js'></script> 
+    <script type='text/javascript' src='static/js/camera.js'></script> 
+    <link rel='stylesheet' id='camera-css'  href='static/css/camera.css' type='text/css' media='all'> 
+    <style>
+    body {
+      margin: 0;
+      padding: 10;
+    }
+    a {
+      color: #09f;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    #back_to_camera {
+      clear: both;
+      display: block;
+      height: 80px;
+      line-height: 40px;
+      padding: 20px;
+    }
+    .fluid_container {
+      margin: 10px auto;
+      max-width: 2000px;
+      width: 90%;
+            height:80%;
+    }
+    video{
+      width:100%;
+    }
+
+  </style>
+
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////
+    //
+    //    Scripts
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////////////////--> 
+  
+    
+    <script>
+    jQuery(function(){
+           
+            var obj = {};
+      jQuery('#camera_wrap_1').each(function(){
+                var t = jQuery(this);
+                t.camera({
+                    height: '80%',
+                    loader: 'none',
+                    pagination: false,
+                    fx:'scrollRight',
+                    slideOn:'next',
+                    thumbnail:false,
+                    imagePath : '../static/img/',
+
+                    onEndTransition: function(){
+
+                     var ind = t.find('.cameraContents .cameraContent.cameracurrent + div').index();
+                     var options = {
+                         year: "numeric", month: "short",
+                            day: "numeric", hour: "2-digit", minute: "2-digit", second:"2-digit",hour12: false
+                        };
+
+                    ts = new Date(Date.now()).toLocaleTimeString("en-us", options);
+
+                     // obj[ind] = new Date(Date.now()).toLocaleString();
+                     obj[ind] = ts;
+                     // console.log("Index of slide " + ind ) ;
+                     if (ind == -1){
+                        console.log("CALL HERE");
+                        t.cameraStop();
+                        jQuery.ajax({
+                              url: "/endexpt",
+                              data:{data_key: JSON.stringify(obj) },
+                              type:"POST"
+
+                            }).done(function() {
+                                console.log("Expt Ended!!")
+                            })
+
+                     }
+                }
+
+                // onLoaded: function(){
+
+
+
+                //     console.log(new Date(Date.now()).toLocaleString());
+                // }
+      });
+
+      
+    });
+        });
+
+        // jQuery('#last-slide').cameraStop(); //stop the slideshow
+
+  </script>
+ 
+</head>
+<body>
+
+  <div class="fluid_container">
+        <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+
+<!-- 
+             <div data-src="static/img/blank.gif" data-time="18000" data-transPeriod="1000">
+                  <div class="camera_caption_text_long">
+                Well, again looking at the curve, from pH = 11 to about pH = 4, pH changes very rapidly with from an infinitesimally small change in Vadded. Since one drop of added titrant will cause this large change, even though the change in color of phenolphthalein does not occur right on the equivalence point, it is within approximately one drop. This kind of uncertainty is "acceptable uncertainty" in using titration to volumetrically determine concentrations.
+                  </div>
+            </div>
+             <div data-src="static/img/pic2.jpg" data-time="3000" data-transPeriod="1000" data-portrait="true"> </div> -->
+<!-- 
+            <div class="videoWrapper" data-time="151000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid9.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div> -->
+
+
+            <div class="videoWrapper" data-time="7000" data-transPeriod="2000" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid1.mp4" width="100%" height="100%"></iframe>
+            </div>
+
+             <div class="videoWrapper" data-time="8000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid4.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+<!--
+             <div data-src="static/img/pic1.jpg" data-time="3000" data-transPeriod="1000" data-portrait="true"> </div> 
+
+             -->
+            <!--  <div class="videoWrapper" data-time="8000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+              <video>
+               <source src="static/vid/vid4.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
+               </source>
+             </video>
+            </div>
+ -->
+
+ 
+
+
+            <!-- Videos! --> 
+
+
+<!-- 
+            <div class="videoWrapper" data-time="7000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid1.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            
+
+           <div class="videoWrapper" data-time="70000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid2.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="56000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid3.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="8000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid4.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="7000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid5.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid6.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="111000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid7.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid8.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="151000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid9.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid10.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid11.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="4000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid12.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="103000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid13.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid14.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="68000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid15.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid16.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="5000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid17.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid18.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid19.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="85000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid20.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="4000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid21.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid22.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid23.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="51000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid24.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="7000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid25.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid26.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid27.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="104000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid28.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="7000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid29.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="7000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid30.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="7000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid31.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid32.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+            <div class="videoWrapper" data-time="6000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif" >
+               <iframe src="static/vid/vid33.mp4" width="2000" height="800" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="7000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid34.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+
+            <div class="videoWrapper" data-time="59000" data-transPeriod="2000" data-thumb="static/img/blank.gif" data-src="static/img/blank.gif">
+               <iframe src="static/vid/vid35.mp4" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+
+ -->
+          
+
+
+        </div><!-- #camera_wrap_1 -->
+
+      
+    </div><!-- .fluid_container -->
+    
+    <div style="clear:both; display:block; height:100px"></div>
+</body> 
+</html>

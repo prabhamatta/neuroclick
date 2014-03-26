@@ -682,6 +682,9 @@
 					}
 					t.after($(imgFake).attr({'class':'imgFake','width':w,'height':h}));
 					var clone = t.clone();
+					clone.attr('width','100%');
+					console.log ("prabha here");
+
 					t.remove();
 					$(imgFake).bind('click',function(){
 						if($(this).css('position')=='absolute') {
@@ -700,7 +703,10 @@
 								}
 							}
 							clone.attr('src',cloneSrc+autoplay);
+							// clone.attr('width',"100%");
+
 							videoPresent = true;
+
 						} else {
 							$(this).css({position:'absolute',top:0,left:0,zIndex:10}).after(clone);
 							clone.css({position:'absolute',top:0,left:0,zIndex:9});

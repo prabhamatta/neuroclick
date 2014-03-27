@@ -489,7 +489,7 @@ border-left-width: 0px;
 }
 
 .camera_caption_text_small{
-	margin-top: 27%; 
+	margin-top: 15%; 
 	margin-right: 25%;
 	margin-left: 17%;
 	/*margin: auto;*/
@@ -504,7 +504,7 @@ border-left-width: 0px;
 }
 
 .camera_caption_text_medium{
-	margin-top: 20%; 
+	margin-top: 15%; 
 	margin-right: 25%;
 	margin-left: 17%;
 	/*margin: auto;*/
@@ -520,13 +520,13 @@ border-left-width: 0px;
 
 
 .camera_caption_text_long{
-	margin-top: 20%; 
-	margin-right: 25%;
-	margin-left: 17%;
+	margin-top: 5%; 
+	margin-right: 5%;
+	margin-left: 5%;
 	/*margin: auto;*/
-	width: 75%;
+	width: 100%;
 	text-align:left;
-	font-size: 55px;
+	font-size: 65px;
 	/*background: #000;
 	background: rgba(0, 0, 0, 0.8);*/
 

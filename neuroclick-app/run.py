@@ -1,4 +1,8 @@
+import sys
+from pprint import pprint as pp
 from mindwavesocket import app
+
+
 from gevent import monkey
 from socketio.server import SocketIOServer
 

@@ -5,10 +5,12 @@ import numpy as np
 import time
 from sklearn import linear_model
 
+fp= open("108_stata_data.txt", "w")
+
 
 def getSlideTimeStamps():
     data = []
-    with open("../../neuroclick-app/data/103/slide_timestamps.txt") as f:
+    with open("../../neuroclick-app/data/108/slide_timestamps.txt") as f:
         text = f.read()
         text = text.replace(', ',' ')
         text = text.replace('{', '')
@@ -59,13 +61,16 @@ def generateFeatures():
                 sum_gamma += ((int(timed_user_data[j][7]) + int(timed_user_data[j][8]))/2)
         n_data = start_index_of_slide - s
         feature_set.append([sum_delta/n_data, sum_theta/n_data, sum_alpha/n_data, sum_beta/n_data, sum_gamma/n_data])
-
+        fp.write("\t".join(str(s) for s in [sum_delta/n_data, sum_theta/n_data, sum_alpha/n_data, sum_beta/n_data, sum_gamma/n_data]))
+        fp.write("\n")
+        
+    fp.close()
     return np.asmatrix(feature_set)
     # return np.array(feature_set)
 
 def getUserData():
     user_data = []
-    with open("../../neuroclick-app/data/103/all_data.txt") as f:
+    with open("../../neuroclick-app/data/108/all_data.txt") as f:
         for line in f:
             line_list = line.strip().split("\t")
             user_data.append(line_list)
@@ -133,12 +138,13 @@ def computeAverageMetrics():
 def computeCoefficient_scikit():
     X = generateFeatures()
     Y = generateLabels()
-                X = X/np.linalg.norm(X)
+    X = X/np.linalg.norm(X)
     clf = linear_model.LinearRegression()
     clf.fit(X,Y)
     print clf.coef_
 
 
 if __name__ == "__main__":
-    # computeCoefficient()
-    computeCoef ficient_scikit()
+    computeCoefficient()
+    #computeCoefficient_scikit()
+    #generateFeatures()

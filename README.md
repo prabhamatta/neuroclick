@@ -1,4 +1,4 @@
-neuroclick
+NeuroClick
 ==========
 
-Neuroclick
+NeuroClick

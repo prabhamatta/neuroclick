@@ -1,45 +1,36 @@
-__author__ = 'rahmanaicc'
+__author__ = 'Neuroclick'
 
 import os
 import numpy as np
 import time
 from sklearn import linear_model
+import datetime
 
-fp= open("108_stata_data.txt", "w")
+META_DATA = {}
+LABEL_DATA = []
+PROCESSED_PATH = "../processed_data/"
 
-
-def getSlideTimeStamps(f):
-    data = []
-    text = f.read()
-    text = text.replace(', ',' ')
-    text = text.replace('{', '')
-    text = text.replace('}', '')
-
-    # text = text.replace(',','\n')
-    for t in text.split(','):
-        index, ts = t.split('":"')
-        ts = ts.replace('"','')
-        index = index.replace('"','')
-        data.append((ts.strip(),index.strip()))  
+def generate_user_avg_attn(user_slide_data,user_att_med):
+    sum_att = 0
+    for stimulus_id in range(1,len(user_slide_data)):
+        start_time = user_slide_data[str(stimulus_id)]
+        end_time = start_time + META_DATA[str(stimulus_id)][0]
         
-    #with open("../../neuroclick-app/data/108/slide_timestamps.txt") as f:
-        #text = f.read()
-        #text = text.replace(', ',' ')
-        #text = text.replace('{', '')
-        #text = text.replace('}', '')
+        a = time.mktime(time.strptime("2000 "+ start_time, "%Y %H:%M:%S"))
+        a = time.mktime(time.strftime("%H:%M:%S",start_time ))
+        
+        b = a + datetime.timedelta(0,25) # days, seconds, then other fields.
+        print a.time()
+        print b.time()        
 
-        ## text = text.replace(',','\n')
-        #for t in text.split(','):
-            #index, ts = t.split('":"')
-            #ts = ts.replace('"','')
-            #index = index.replace('"','')
-            #data.append((ts.strip(),index.strip()))
-    new_data = do_offset(data, '%b %d %Y %H:%M:%S',0,True)
-    ret_val =[]
-    for t ,index in new_data:
-        ret_val.append(t)
-    #print ret_val
-    return ret_val
+
+        print "hello"
+        
+        
+        
+        
+            
+    
 
 def generateFeatures():
     timed_user_data = getUserData()
@@ -92,34 +83,8 @@ def getUserData():
     return new_data
 
 
-def do_offset(tuples_list, format ='%b %d, %Y %H:%M:%S', offset_val=0,slides = False):
-    new_tuples_list = []
-    firstval = time.strptime(tuples_list[0][0], format)
-    if not slides:
-        def_time = 'Apr 01, 2000 00:00:00'
-    else:
-        def_time = 'Apr 01 2000 00:00:00'
-
-    conversion_timer = time.mktime(time.strptime(def_time, format))
-
-    for item in tuples_list:
-        t= item[0]
-        timer = time.strptime(t, format)  ##3,4,5
-        timer = time.mktime(timer) - time.mktime(firstval) + conversion_timer + offset_val
-        timer = time.strftime("%H:%M:%S",time.localtime(timer))
-        if not slides:
-            new_tuples_list.append((timer,item[1],item[2], item[3],item[4],item[5], item[6],item[7],item[8]))
-        else:
-            new_tuples_list.append((timer,item[1]))
-    return new_tuples_list
-
-
-
-
-
 def generateLabels():
-    a =  [1,1,1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,0,0,1,0,1,0,1,1,0,0,1,1,1,0,1,0,1,0,1,0,0,1,0,0,1,0,1,0,1,0,1,0,1,1,1,1,1,0,0,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0,1,1,0,1,0,0,0,0,1,0,1,1,0,1,1]
-    return np.transpose(np.asmatrix(a))
+    return np.transpose(np.asmatrix(LABEL_DATA))
 
 
 def computeCoefficient():
@@ -138,28 +103,8 @@ def computeCoefficient():
     beta = t1 * t
     print beta
 
-def computeAverageMetrics():
-    path = "../../neuroclick-app/data/"
-    for dir_name, sub_dir_list, files in os.walk(path):
-        #print dir_name, sub_dir_list
-        if dir_name[-3:][0].isdigit():
-            user_id =  dir_name[-3:]
-            for f in files:
-                print f
-                clean_up_data(dir_name, user_id, f)
-                
-    
-def clean_up_data(raw_path, user_id, f):
-    with open("processed_data"+user_id+f, "w") as fw, open(raw_path+"/"+f, "r") as fr:
-        if "slide"  in f:
-            getSlideTimeStamps(fr)
-        else:
-            print f
-            
-            #for line in fr:
-                #print line.spl
-    
-    
+
+ 
 def computeCoefficient_scikit():
     X = generateFeatures()
     Y = generateLabels()
@@ -169,11 +114,53 @@ def computeCoefficient_scikit():
     print clf.coef_
     
     
-    
+def get_user_slidetimestamp(user_id):
+    slide_data = {}
+    with open(PROCESSED_PATH+user_id+"/slide_timestamps.txt", "r") as fp:
+        for line in fp:
+            stimulus_idx,ts = line.strip().split("\t")
+            slide_data[stimulus_idx] = ts            
+    return slide_data
+            
+def get_user_att_med(user_id):
+    att_med_data = {}
+    with open(PROCESSED_PATH+user_id+"/att_med.txt", "r") as fp:
+        for line in fp:
+            line_list=  line.strip().split("\t")
+            att_med_data[line_list[0]] = line_list[1:-1]          
+    return att_med_data
+            
+
+
+def loadProcessedData():
+    all_slide_data = {}
+    all_data = {}
+    att_med  = {}
+    spectrum_data = {}
+    for dir_name, sub_dir_list, files in os.walk(PROCESSED_PATH):
+        #print dir_name, sub_dir_list
+        if dir_name[-3:][0].isdigit():
+            user_id =  dir_name[-3:]
+            user_slide_data  = get_user_slidetimestamp(user_id)
+            user_att_med = get_user_att_med(user_id)
+            all_slide_data[user_id] = user_slide_data
+            
+            generate_user_avg_attn(user_slide_data,user_att_med )
+            
+            
+ 
+def loadMetaData():
+    with open("meta_data.txt", "r") as fp:
+        for line in fp:
+            stimulus_index, time_dur, label  = line.strip().split("\t")
+            META_DATA[stimulus_index] = [time_dur,label]
+            LABEL_DATA.append(int(label))
+            
 
 
 if __name__ == "__main__":
-    computeAverageMetrics()
+    loadMetaData()
+    loadProcessedData()
     # computeCoefficient()
     #computeCoefficient_scikit()
     #generateFeatures()

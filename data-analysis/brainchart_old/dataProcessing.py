@@ -145,6 +145,7 @@ def computeCoefficient_scikit():
 
 
 if __name__ == "__main__":
-    computeCoefficient()
+    computeAverageMetrics()
+    # computeCoefficient()
     #computeCoefficient_scikit()
     #generateFeatures()

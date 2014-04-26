@@ -24,14 +24,14 @@ def do_offset(tuples_list, filename, format ='%b %d, %Y %H:%M:%S', offset_val=0)
             line_list = [timer]
             for i in json.loads(item[1]):
                 line_list.append(i)
-            print line_list
+            #print line_list
             new_tuples_list.append(tuple(line_list))
             
         else:
             line_list = [timer]
             for i in item[1:]:
                 line_list.append(i)
-            print line_list
+            #print line_list
             new_tuples_list.append(tuple(line_list))       
     return new_tuples_list
 

@@ -5,6 +5,10 @@ import numpy as np
 from datetime import datetime, timedelta 
 from sklearn import linear_model
 import json
+import matplotlib.pyplot as plt
+import pylab
+import scipy
+from scipy.stats.stats import pearsonr
 
 META_DATA = {}
 LABEL_DATA = []
@@ -99,15 +103,25 @@ def generate_user_avg_alpha_beta(user_slide_data,user_alpha_beta):
 def compute_correlation_coeff(feature_list):
     X = feature_list
     Y = LABEL_DATA
-    import scipy
-    print scipy.corrcoef(X,Y)
-    import matplotlib.pyplot as plt
-    import pylab
-    plt.scatter(X,Y)
-    plt.show()
-    print "here"
     
-      
+    #print scipy.corrcoef(X,Y)
+    print pearsonr(X,Y)
+    
+    plt.scatter(X,Y)
+    
+    plt.show()
+    print "*****************************"
+    
+def compute_correlation_coeff(feature_list,LABEL_DATA ):
+    X = feature_list
+    Y = LABEL_DATA
+    
+    #print scipy.corrcoef(X,Y)
+    print pearsonr(X,Y)
+    
+    #plt.scatter(X,Y)
+    #plt.show()
+    print "*****************************"
     
 def get_user_slidetimestamp(user_id):
     slide_data = {}
@@ -180,10 +194,10 @@ def load_all_alpha_beta_data():
         all_users_alpha_beta  = json.loads(fp.read())
         return all_users_alpha_beta       
         
-def generate_all_user_attn_med_features(attn_med):
-    if attn_med == "attn":
+def generate_all_user_attn_med_features(attn_med_flag):
+    if attn_med_flag == "attn":
         val = 0
-    elif attn_med == "med":
+    elif attn_med_flag == "med":
         val =1
         
     all_users_att_med = load_all_attn_med_data()
@@ -203,26 +217,33 @@ def generate_all_user_attn_med_features(attn_med):
         attn_feature_list.append(round(sum(attn_dict[i])/len(attn_dict[i]),3))
 
     print len(attn_feature_list)
+    if attn_med_flag == "attn":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_att.json", "w") as fp:
+            fp.write(json.dumps(attn_feature_list))
+    elif attn_med_flag == "med": 
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_med.json", "w") as fp:
+            fp.write(json.dumps(attn_feature_list))        
+        
     return attn_feature_list
 
         
-def generate_all_user_alpha_beta_features(alpha_beta):
+def generate_all_user_alpha_beta_features(alpha_beta_flag):
     
-    if alpha_beta == "delta":
+    if alpha_beta_flag == "delta":
         val = 0
-    elif alpha_beta == "theta":
+    elif alpha_beta_flag == "theta":
         val =1
-    elif alpha_beta == "low_alpha":
+    elif alpha_beta_flag == "low_alpha":
         val =2   
-    elif alpha_beta == "high_alpha":
+    elif alpha_beta_flag == "high_alpha":
         val =3       
-    elif alpha_beta == "low_beta":
+    elif alpha_beta_flag == "low_beta":
         val =4    
-    elif alpha_beta == "high_beta":
+    elif alpha_beta_flag == "high_beta":
         val =5    
-    elif alpha_beta == "low_gamma":
+    elif alpha_beta_flag == "low_gamma":
         val =6    
-    elif alpha_beta == "mid_gamma":
+    elif alpha_beta_flag == "mid_gamma":
         val =7    
     
 
@@ -243,6 +264,32 @@ def generate_all_user_alpha_beta_features(alpha_beta):
         alpha_beta_feature_list.append(round(sum(alpha_beta_dict[i])/len(alpha_beta_dict[i]),3))
 
     print len(alpha_beta_feature_list)
+    if alpha_beta_flag == "delta":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_delta.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))        
+        
+    elif alpha_beta_flag == "theta":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_theta.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))                
+    elif alpha_beta_flag == "low_alpha":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_alpha.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))          
+    elif alpha_beta_flag == "high_alpha":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_high_alpha.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))            
+    elif alpha_beta_flag == "low_beta":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_beta.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))         
+    elif alpha_beta_flag == "high_beta":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_high_beta.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))          
+    elif alpha_beta_flag == "low_gamma":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_gamma.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))            
+    elif alpha_beta_flag == "mid_gamma":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_mid_gamma.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))          
+    
     return alpha_beta_feature_list
 
 
@@ -261,11 +308,11 @@ if __name__ == "__main__":
     load_meta_data()
     #load_processed_data()
     
-    #""" Calculating Correlation coeff for Attention and Meditation"""
-    #attn_feature_list = generate_all_user_attn_med_features('attn')
-    #med_feature_list = generate_all_user_attn_med_features('med')
-    #compute_correlation_coeff(attn_feature_list)
-    #compute_correlation_coeff(med_feature_list)
+    """ Calculating Correlation coeff for Attention and Meditation"""
+    attn_feature_list = generate_all_user_attn_med_features('attn')
+    med_feature_list = generate_all_user_attn_med_features('med')
+    compute_correlation_coeff(attn_feature_list)
+    compute_correlation_coeff(med_feature_list)
     
     """ Calculating Correlation coeff for Alpha, Beta, Gamma,... """    
     delta_feature_list = generate_all_user_alpha_beta_features('delta')
@@ -286,7 +333,9 @@ if __name__ == "__main__":
     compute_correlation_coeff(low_gamma_feature_list)
     compute_correlation_coeff(mid_gamma_feature_list)    
 
-    #load_all_attn_med_data()
+   
+   
+    #load_processed_expt_data()
     
     #computeCoefficient_scikit()
     #generate_user_attn_features()

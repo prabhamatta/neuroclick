@@ -94,6 +94,60 @@ def loadData():
                 print filename
                 clean_up_data(dir_name, user_id, filename)
                 
+               
+def process_expt_survey_data(meta_data_survey):
+    all_users_slide_popularity = {}
+    user_gender_dict = {}
+    path = "../../neuroclick-app/data/"
+    with open("../expt_survey_data/expt_survey.txt", "r") as fp:
+        for line in fp:
+            user_slide_popularity={}
+            line_list = line.strip().split("\t")
+            user_id = line_list[0]
+            gender = line_list[-1]
+            for i in range(1, len(line_list)-1):
+                if i <= 10:
+                    if line_list[i] == "pic1":          
+                        user_slide_popularity[int(meta_data_survey[(i,line_list[i])])] = 1
+                        user_slide_popularity[int(meta_data_survey[(i,'pic2')])] = -1
+                    elif line_list[i] == "pic2":          
+                        user_slide_popularity[int(meta_data_survey[(i,line_list[i])])] = 1
+                        user_slide_popularity[int(meta_data_survey[(i,'pic1')])] = -1
+                    elif line_list[i] == "Both":          
+                        user_slide_popularity[int(meta_data_survey[(i,'pic2')])] = 1
+                        user_slide_popularity[int(meta_data_survey[(i,'pic1')])] = 1     
+                    else:
+                        user_slide_popularity[int(meta_data_survey[(i,'pic2')])] = -1
+                        user_slide_popularity[int(meta_data_survey[(i,'pic1')])] = -1 
+                elif i ==14:
+                    continue
+                else:
+                    if line_list[i] >= '3' or line_list[i] <= '5':
+                        user_slide_popularity[int(meta_data_survey[(i,'vid')])] = 1
+                    else:
+                        user_slide_popularity[int(meta_data_survey[(i,'vid')])] = -1
+            all_users_slide_popularity[user_id] = user_slide_popularity
+            user_gender_dict[user_id] = gender
+        with open("../expt_survey_data/all_users_slide_popularity.json", "w") as fw, open("../expt_survey_data/user_gender.json", "w") as fg:
+            fw.write(json.dumps(all_users_slide_popularity))
+            fg.write(json.dumps(user_gender_dict))
+     
+             
+def process_expt_survey_metadata():
+    meta_data_survey = {}    
+    path = "../../neuroclick-app/data/"
+    with open("../expt_survey_data/meta_data_survey1.txt", "r") as fp:
+        for line in fp:
+            line_list = line.strip().split("\t")
+            ques_no = line_list[0]
+            stimulus = line_list[1]
+            meta_data_survey[(int(ques_no),stimulus)] = line_list[2]
+    return meta_data_survey
                 
+  
+                  
 if __name__ == "__main__":
-    loadData()
+    #loadData()    
+    meta_data_survey = process_expt_survey_metadata()
+    process_expt_survey_data(meta_data_survey)
+    

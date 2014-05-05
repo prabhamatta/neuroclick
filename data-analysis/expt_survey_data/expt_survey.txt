@@ -17,7 +17,7 @@
 116	pic1	pic1	pic1	pic1	pic2	pic1	pic1	pic2	pic2	pic2	4	5	1	1	4	5	4	4	4	3	M
 117	pic2	pic1	Both	Both	Both	Both	pic1	Both	pic1	pic2	3	3	2	3	5	3	4	4	3	3	M
 118	Both	Both	Both	Both	Both	Both	Both	Both	Both	Both	5	5	5	1	5	5	5	5	5	5	M
-118	pic1	pic1	pic1	Both	pic2	Both	pic1	pic2	pic2	Both	5	5	3	1	5	5	5	5	3	4	F
+119	pic1	pic1	pic1	Both	pic2	Both	pic1	pic2	pic2	Both	5	5	3	1	5	5	5	5	3	4	F
 120	pic2	pic2	Both	pic2	Both	pic1	pic2	Both	pic2	Both	5	5	4	4	5	3	5	4	4	5	M
 121	Both	pic1	Both	Both	pic2	pic1	pic2	Both	pic2	pic1	5	5	5	1	5	5	4	5	5	5	M
 122	pic1	Both	pic1	pic2	Both	pic2	pic1	pic2	Both	Both	5	5	5	1	5	5	5	5	5	5	F

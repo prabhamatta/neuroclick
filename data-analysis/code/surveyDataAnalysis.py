@@ -44,14 +44,20 @@ def get_correlation_basic(attn_med_flag ):
     all_29_29_feature_list =  {'pic':[], 'vid':[]}  
     all_29_29_label_list =  {'pic':[], 'vid':[]}  
     
+    all_stimuli_users_feature_list = []
+    
     with open(SURVEY_PROCESSED_PATH+"all_survey_users_slide_popularity.json", "r") as fp:
         all_users_slide_popularity= json.loads(fp.read())
     with open(ALL_USER_PROCESSED_PATH+"avg_att_med.json", "r") as fr:
         all_users_avg_att_med= json.loads(fr.read())    
     
     print "user_id \t stimulus_type \t corr_val \t p_val \n"
-    
+    count = 1
     for user_id, data in all_users_slide_popularity.items(): 
+        stimuli_feature_list = {'pic':[], 'vid':[]} 
+        stimuli_label_list = {'pic':[], 'vid':[]} 
+        print count
+        count += 1
         label_list = {'pic':[], 'vid':[]}    
         feature_list = {'pic':[], 'vid':[]}      
         for slide_no,popularity in sorted(data.items()):
@@ -67,14 +73,29 @@ def get_correlation_basic(attn_med_flag ):
                 
             all_29_29_feature_list[stimulus_tag].append(feature_val)
             all_29_29_label_list[stimulus_tag].append(popularity)
+            stimuli_feature_list[stimulus_tag].append(feature_val)
+            stimuli_label_list
             
+
+        all_stimuli_users_feature_list.append(user_feature_list['pic']+user_feature_list['vid']) 
+        
+        
+        
         for sti_tag, feat_list in feature_list.items():
             corr = compute_correlation_coeff(feat_list,label_list[sti_tag])
             print user_id +"\t" + sti_tag +"\t" + str(corr[0]) + "\t" + str(corr[1]) + "\n"
     print "Combined correlation of all 29 users and all 29 survey stimuli========"+attn_med_flag +" \n"    
     for all_sti_tag, all_feat_list in all_29_29_feature_list.items():         
         corr = compute_correlation_coeff(all_feat_list,all_29_29_label_list[all_sti_tag])
-        print "Stimulus type: "+all_sti_tag +"\t"+"Corr: " + str(corr[0]) + "\t" + "p_val: " +str(corr[1]) + "\n"        
+        print "Stimulus type: "+all_sti_tag +"\t"+"Corr: " + str(corr[0]) + "\t" + "p_val: " +str(corr[1]) + "\n" 
+        
+    print "Combined correlation of all 29 survey stimuli========"+attn_med_flag +" \n"   
+    sti_feature_list = []
+    
+    
+        
+        
+    
 
                
 def get_correlation_normalized(attn_med_flag ):
@@ -120,7 +141,7 @@ if __name__ == "__main__":
     get_correlation_basic("attn")
     get_correlation_basic("med")
     
-    get_correlation_normalized("attn")
+    #get_correlation_normalized("attn")
     
     #load_processed_data()
     

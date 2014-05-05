@@ -1,11 +1,19 @@
+import flask
 from flask import Flask, Response, request, render_template, url_for, redirect, jsonify
 import json
 import math
 
+
+
 app = Flask(__name__)
 ALL_USER_PROCESSED_PATH = "../data-analysis/all_user_processed_data/"
 
+
 @app.route("/", methods = ["GET", "POST"])
+def dash():
+    return render_template('neuroclick_analytics.html')
+
+@app.route("/login", methods = ["GET", "POST"])
 def login():
     return render_template('login.html')
 
@@ -14,9 +22,9 @@ def start():
     return render_template('landing.html')
 
 
-@app.route("/dash", methods=["GET","POST"])
+@app.route("/neuroclick_analytics", methods=["GET","POST"])
 def dashboard():
-    return render_template('dash.html')
+    return render_template('neuroclick_analytics.html')
 
 @app.route("/getAverageAttention", methods=['GET'])
 def get_average_attention():
@@ -34,9 +42,9 @@ def get_user_stats():
     user_id = request.form['userid']
 
 
-@app.route('/wiki', methods=['POST','GET'])
-def wik():
-    return render_template('wikirecruitment.html')
+@app.route('/survey_results', methods=['POST','GET'])
+def surveyResults():
+    return render_template('survey_results.html')
 
 def GetDataFromFiles(metric1,metric2):
     fp_metric1 = open(ALL_USER_PROCESSED_PATH + metric1 + ".json", "r")
@@ -52,4 +60,5 @@ def GetDataFromFiles(metric1,metric2):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
+

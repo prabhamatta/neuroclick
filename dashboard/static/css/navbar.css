@@ -1,0 +1,251 @@
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.line {
+  fill: none;
+  stroke-width: 1.5px;
+
+}
+
+html, body { 
+	background: white;
+	background-repeat:repeat-x;
+	text-align: center;
+
+}
+.brand{
+    display: block;
+    float: left;
+    padding: 8px 20px 12px;
+    margin-left: -20px;
+    font-size: 30px;
+    font-weight: 200;
+    line-height: 1;
+    color: #1AB2E8;
+    
+}
+#tabs{
+    float:right;
+}
+
+.nav a{
+	color: #1AB2E8;
+ }
+
+#logo{
+	padding: 0px 10px 10px 40px;
+	float:left;
+	font-family: 'Stalemate', cursive;
+}
+
+#container{
+	background: white;
+	height:100%
+}
+
+#container #heading{
+    z-index: 1030;
+	/*position:fixed;*/
+	background:#023366; 
+	/*padding: 10px 10px 10px 10px;*/
+	height:50px;
+	width:100%;
+	
+}
+
+#container #heading h1{
+	color:white;
+	font-family: 'Stalemate', cursive;
+}
+
+#content  {
+    width: 80%;
+    height: 100%;
+    padding: 50px 10px 50px 10px;
+     margin-left: auto; 
+    margin-right: auto;
+    position:relative;
+}
+
+#help {
+
+  text-align:left;
+}
+
+#expts{
+  text-align:left;
+}
+#header{
+    padding: 10px 10px 10px 10px;
+    display:block;
+    text-align:right;
+    font-family: 'Stalemate', cursive;
+    font-weight: 200;
+	text-align:center;
+}
+
+
+.dot {
+  stroke-width: 1.5px;
+}
+
+.dot-selected {
+  fill: #B0C4DE;
+  stroke: #B0C4DE;
+  stroke-width: 1.5px;
+}
+
+
+#metricscontainer {
+	width: 95%;
+	height: 25%;
+	padding: 10px 10px 10px 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius : 5px;
+	margin-left: auto; 
+	margin-right: auto;
+	margin-bottom: 3%;
+    /*background: #eee; */
+	background: #fff linear-gradient(#e9f5ff,#fff 100px);
+	background-repeat: repeat-x;
+	resize:both;
+	overflow: auto;
+	 /*background-color:#e7ebf2;*/
+	  -moz-box-shadow: 5px 15px 15px 5px #222;
+	   -webkit-box-shadow: 5px 15px 15px 5px #222;
+    box-shadow: 5px 15px 15px 5px #222; 
+    position:relative;
+}
+#baseline_text{
+font-family: 'Stalemate', cursive;
+		text-align: left;
+		font:18px sans-serif;
+		padding: 10px 10px 10px 10px;
+}
+
+
+
+#alltables {
+    height: auto;
+    max-width: 1000px;
+    padding: 10px 10px 10px 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top:3%;
+    margin: auto;
+    background: #eee;
+    -moz-box-shadow: 5px 15px 15px 5px #222;
+    -webkit-box-shadow: 5px 15px 15px 5px #222;
+    box-shadow: 5px 15px 15px 5px #222;
+    position: relative;
+    resize: both;
+    overflow: auto;
+}
+
+#jqTable{
+	background: #eee;
+}
+label{
+	width:100%;
+}
+
+.grid .tick {
+stroke: lightgrey;
+opacity: 0.7; 
+}
+
+.grid path { stroke-width: 0;
+}
+#jqTable_wrapper{
+	background-color: #eee;
+}
+.pagination{
+	float:right;
+}
+.scroll1 {
+		overflow: auto;
+	}
+
+
+ .bar {
+    fill: steelblue;
+  }
+
+
+.btn-info {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #49afcd;
+	background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+	background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+	background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+	background-image: linear-gradient(to bottom, #5bc0de, #2f96b4);
+	background-repeat: repeat-x;
+	border-color: #2f96b4 #2f96b4 #1f6377;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	border: 1px solid #ccc;
+	padding: 5px 14px 6px;
+	border-radius: 4px;
+	font-size: 12px;
+}
+#usersContainer {
+	text-align:left;
+	float:left;
+    height: auto;
+    width: auto;
+    padding: 30px 10px 10px 10px;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top:3%;
+    margin: auto;
+    position: relative;
+    resize: both;
+    overflow: auto;
+}
+
+.row{
+height:60px;
+}
+
+
+h1, h2, h3, h4 {
+  font-family: Helvetica, Arial, sans-serif;
+  /*margin-top: 2em;*/
+  margin-right: 0;
+  /*margin-bottom: 10px;*/
+  margin-left: 0;
+  /*text-transform: uppercase;*/
+}
+
+h1 {
+  font-family: Georgia, FreeSerif, Times, serif;
+  font-size: 26px;
+  text-transform: None;
+	font-family: 'Stalemate', cursive;
+  font-weight:bold;
+  margin: 15px 0 11px;
+}
+
+h2 {
+	font-family: 'FreeSerif';
+
+	/*font-family: 'Stalemate', cursive;*/
+  font-size: 15px;
+  font-weight:bold;
+}
+h3 {
+	font-family: 'FreeSerif';
+  font-size: 14px;
+  font-weight:bold;
+}
+
+p{
+  font-size: 12px;
+}

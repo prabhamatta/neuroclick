@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../dashboard/.idea/dashboard.iml" filepath="$PROJECT_DIR$/../dashboard/.idea/dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../data-analysis/.idea/data-analysis.iml" filepath="$PROJECT_DIR$/../data-analysis/.idea/data-analysis.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/neuroclick-app.iml" filepath="$PROJECT_DIR$/.idea/neuroclick-app.iml" />
     </modules>
   </component>

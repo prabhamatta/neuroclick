@@ -112,16 +112,7 @@ def compute_correlation_coeff(feature_list):
     plt.show()
     print "*****************************"
     
-def compute_correlation_coeff(feature_list,LABEL_DATA ):
-    X = feature_list
-    Y = LABEL_DATA
-    
-    #print scipy.corrcoef(X,Y)
-    print pearsonr(X,Y)
-    
-    #plt.scatter(X,Y)
-    #plt.show()
-    print "*****************************"
+
     
 def get_user_slidetimestamp(user_id):
     slide_data = {}
@@ -176,12 +167,13 @@ def load_processed_data():
     with open(ALL_USER_PROCESSED_PATH+"/avg_alpha_beta.json", "w") as fp: 
         fp.write(json.dumps(all_users_alpha_beta))    
 
-
+            
+            
 def load_meta_data():
     with open("meta_data.txt", "r") as fp:
         for line in fp:
-            stimulus_index, time_dur, label  = line.strip().split("\t")
-            META_DATA[stimulus_index] = [time_dur,label]
+            stimulus_index, time_dur, label, stimulus_type, long_short  = line.strip().split("\t")
+            META_DATA[stimulus_index] = [time_dur, label, stimulus_type, long_short]
             LABEL_DATA.append(int(label))
             
 def load_all_attn_med_data():

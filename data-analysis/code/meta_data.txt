@@ -4,7 +4,7 @@
 4	27	1	text2	Long
 5	37	-1	text3	Long
 6	26	1	text4	Long
-7	11	-1	text5	Short
+7	11	-1	text5	Long
 8	40	-1	text6	Long
 9	9	-1	text7	Short
 10	13	-1	text8	Long
@@ -29,7 +29,7 @@
 29	21	1	text26	Long
 30	6	1	text27	Short
 31	6	1	text28	Short
-32	11	1	text29	Short
+32	11	1	text29	Long
 33	6	-1	text30	Short
 34	13	1	text31	Long
 35	35	-1	text32	Long

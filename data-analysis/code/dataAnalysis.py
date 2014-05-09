@@ -16,16 +16,16 @@ PROCESSED_PATH = "../processed_data/"
 ALL_USER_PROCESSED_PATH = "../all_user_processed_data/"
 
 BLINK_TIME = {
-    'BLINK_START_TEX_SHORT': 2,
+    'BLINK_START_TEX_SHORT': 1,
     'BLINK_END_TEX_SHORT' : 5,
-    'BLINK_START_TEX_LONG' : 2,
-    'BLINK_END_TEX_LONG' : 10,
+    'BLINK_START_TEX_LONG' : 3,
+    'BLINK_END_TEX_LONG' : 12,
     'BLINK_START_PIC_PIC' : 2,
     'BLINK_END_PIC_PIC' : 4,
     'BLINK_START_VID_SHORT' :2,
     'BLINK_END_VID_SHORT' : 5,
-    'BLINK_START_VID_LONG' : 2,
-    'BLINK_END_VID_LONG' : 15,
+    'BLINK_START_VID_LONG' : 15,
+    'BLINK_END_VID_LONG' : 35,
     'BLINK_START_BAS_BASELINE':2,
     'BLINK_END_BAS_BASELINE' : 6,
 }
@@ -368,7 +368,45 @@ def generate_all_user_attn_med_features(attn_med_flag):
         
     return attn_feature_list
 
+def load_all_blink_attn_med_data():
+    with open(ALL_USER_PROCESSED_PATH+"/blink_att_med.json", "r") as fp:
+        all_users_att_med  = json.loads(fp.read())
+        return all_users_att_med
+         
+def generate_all_user_blink_attn_med_features(attn_med_flag):
+    if attn_med_flag == "attn":
+        val = 0
+    elif attn_med_flag == "med":
+        val =1
         
+    all_users_att_med = load_all_blink_attn_med_data()
+    num_users = len(all_users_att_med)
+    num_stimulus = len(all_users_att_med['101'])
+    attn_feature_list = []
+    attn_dict = {}
+    
+    for user, attn_med in all_users_att_med.items():
+        for i in range(1,len(attn_med)+1): 
+            if i in attn_dict:
+                attn_dict[i].append(attn_med[str(i)][val])
+            else:
+                attn_dict[i] = [attn_med[str(i)][val]]
+
+    for i in range(1, num_stimulus+1):
+        attn_feature_list.append(round(sum(attn_dict[i])/len(attn_dict[i]),3))
+
+    print len(attn_feature_list)
+    if attn_med_flag == "attn":
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_att.json", "w") as fp:
+            fp.write(json.dumps(attn_feature_list))
+    elif attn_med_flag == "med": 
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_med.json", "w") as fp:
+            fp.write(json.dumps(attn_feature_list))        
+        
+    return attn_feature_list
+
+   
+           
 def generate_all_user_alpha_beta_features(alpha_beta_flag):
     
     if alpha_beta_flag == "delta":
@@ -500,8 +538,9 @@ def compute_correlations_blink():
     
 if __name__ == "__main__":
     load_meta_data()
-    generate_blink_data()
-    
+    #generate_blink_data()
+    generate_all_user_blink_attn_med_features("attn")
+    generate_all_user_blink_attn_med_features("med")
     
     
     

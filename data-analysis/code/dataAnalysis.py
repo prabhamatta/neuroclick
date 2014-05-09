@@ -15,6 +15,23 @@ LABEL_DATA = []
 PROCESSED_PATH = "../processed_data/"
 ALL_USER_PROCESSED_PATH = "../all_user_processed_data/"
 
+BLINK_TIME = {
+    'BLINK_START_TEX_SHORT': 2,
+    'BLINK_END_TEX_SHORT' : 5,
+    'BLINK_START_TEX_LONG' : 2,
+    'BLINK_END_TEX_LONG' : 10,
+    'BLINK_START_PIC_PIC' : 2,
+    'BLINK_END_PIC_PIC' : 4,
+    'BLINK_START_VID_SHORT' :2,
+    'BLINK_END_VID_SHORT' : 5,
+    'BLINK_START_VID_LONG' : 2,
+    'BLINK_END_VID_LONG' : 15,
+    'BLINK_START_BAS_BASELINE':2,
+    'BLINK_END_BAS_BASELINE' : 6,
+}
+
+
+
 
 
 def generate_user_avg_attn(user_slide_data,user_att_med):
@@ -160,6 +177,7 @@ def load_processed_data():
             with open(PROCESSED_PATH+user_id+"/avg_alpha_beta.json", "w") as fp:
                 fp.write(json.dumps(user_alpha_beta_avg))
             all_users_alpha_beta[user_id] = user_alpha_beta_avg
+                        
  
     with open(ALL_USER_PROCESSED_PATH+"/avg_att_med.json", "w") as fp: 
         fp.write(json.dumps(all_users_att_med))                     
@@ -167,6 +185,138 @@ def load_processed_data():
     with open(ALL_USER_PROCESSED_PATH+"/avg_alpha_beta.json", "w") as fp: 
         fp.write(json.dumps(all_users_alpha_beta))    
 
+
+
+
+def generate_user_blink_attn(user_slide_data,user_att_med):
+    sum_att = 0
+    user_attn_med_blink = {}
+    for stimulus_id in range(1,len(user_slide_data)): 
+        stimulus_id = str(stimulus_id)        
+        stimulus_type =  META_DATA[stimulus_id][2][:3].upper() + "_" + META_DATA[stimulus_id][3].strip().upper()
+        
+       
+        start_time = datetime.strptime(user_slide_data[stimulus_id], "%H:%M:%S")  + timedelta(seconds=int(BLINK_TIME["BLINK_START_"+stimulus_type] -1))
+                    
+        delta_time =  BLINK_TIME["BLINK_END_"+stimulus_type] - BLINK_TIME["BLINK_START_"+stimulus_type] + 1
+    
+        #start_time = datetime.strptime(start_time, "%H:%M:%S")
+        end_time =start_time + timedelta(seconds=int(delta_time))
+        #print end_time.strftime("%H:%M:%S")
+        sum_att = 0
+        sum_med = 0
+        #cnt = 1
+        #print stimulus_id, start_time, end_time
+        for time_attn_med in user_att_med:
+            t = datetime.strptime(time_attn_med[0], "%H:%M:%S")
+            if t>=start_time and t<=end_time:
+                #cnt +=1
+                
+                sum_att += int(time_attn_med[1])
+                sum_med += int(time_attn_med[2])
+            elif t>end_time:
+                #print t
+                break
+        
+        user_blink_attn =float(sum_att)/(int(delta_time)+1)
+        user_blink_med =float(sum_med)/(int(delta_time)+1)
+        user_attn_med_blink[stimulus_id] = [round(user_blink_attn,3), round(user_blink_med,3)]
+        
+    return user_attn_med_blink
+                
+    
+def generate_user_blink_alpha_beta(user_slide_data,user_alpha_beta):
+    sum_att = 0
+    user_alpha_beta_avg = {}
+    for stimulus_id in range(1,len(user_slide_data)):  
+        stimulus_id = str(stimulus_id)        
+        stimulus_type =  META_DATA[stimulus_id][2][:3].upper() + "_" + META_DATA[stimulus_id][3].strip().upper()
+        
+       
+        start_time = datetime.strptime(user_slide_data[stimulus_id], "%H:%M:%S")  + timedelta(seconds=int(BLINK_TIME["BLINK_START_"+stimulus_type] -1))
+                    
+        delta_time =  BLINK_TIME["BLINK_END_"+stimulus_type] - BLINK_TIME["BLINK_START_"+stimulus_type] + 1
+    
+        #start_time = datetime.strptime(start_time, "%H:%M:%S")
+        end_time =start_time + timedelta(seconds=int(delta_time))        
+
+        
+        #print end_time.strftime("%H:%M:%S")
+        sum_delta = 0
+        sum_theta = 0
+        sum_low_alpha = 0
+        sum_high_alpha = 0
+        sum_low_beta = 0
+        sum_high_beta = 0
+        sum_low_gamma = 0
+        sum_mid_gamma = 0
+        
+        #cnt = 1
+        for time_alpha_beta in user_alpha_beta:
+            t = datetime.strptime(time_alpha_beta[0], "%H:%M:%S")
+            if t>=start_time and t<=end_time:
+                #cnt +=1
+                
+                sum_delta += int(time_alpha_beta[1])
+                sum_theta += int(time_alpha_beta[2])
+                sum_low_alpha += int(time_alpha_beta[3])
+                sum_high_alpha += int(time_alpha_beta[4])
+                sum_low_beta += int(time_alpha_beta[5])
+                sum_high_beta += int(time_alpha_beta[6])
+                sum_low_gamma += int(time_alpha_beta[7])
+                sum_mid_gamma += int(time_alpha_beta[8])
+                
+            elif t>end_time:
+                #print t
+                break
+        
+        user_avg_delta =float(sum_delta)/(int(delta_time)+1)
+        user_avg_theta =float(sum_theta)/(int(delta_time)+1)  
+        user_avg_low_alpha =float(sum_low_alpha)/(int(delta_time)+1)
+        user_avg_high_alpha =float(sum_high_alpha)/(int(delta_time)+1)
+        user_avg_low_beta =float(sum_low_beta)/(int(delta_time)+1)
+        user_avg_high_beta =float(sum_high_beta)/(int(delta_time)+1)        
+        user_avg_low_gamma =float(sum_low_gamma)/(int(delta_time)+1)
+        user_avg_mid_gamma =float(sum_mid_gamma)/(int(delta_time)+1)                        
+        
+        user_alpha_beta_avg[stimulus_id] = [round(user_avg_delta,3), round(user_avg_theta,3), round(user_avg_low_alpha,3), round(user_avg_high_alpha,3), round(user_avg_low_beta,3), round(user_avg_high_beta,3), round(user_avg_low_gamma,3), round(user_avg_mid_gamma,3)]
+        
+    return user_alpha_beta_avg
+
+def generate_blink_data():
+    all_slide_data = {}
+    all_users_att_med  = {}  
+    all_users_alpha_beta  = {}    
+    
+    for dir_name, sub_dir_list, files in os.walk(PROCESSED_PATH):
+        print dir_name, sub_dir_list
+        if dir_name[-3:][0].isdigit():
+            user_id =  dir_name[-3:]
+            user_slide_data  = get_user_slidetimestamp(user_id)
+            all_slide_data[user_id] = user_slide_data
+           
+            #loading attn and med data  
+            user_att_med = get_user_att_med(user_id)
+            all_users_att_med[user_id] = user_att_med
+            user_attn_med_blink = generate_user_blink_attn(user_slide_data, user_att_med)
+            with open(PROCESSED_PATH+user_id+"/blink_att_med.json", "w") as fp:
+                fp.write(json.dumps(user_attn_med_blink))
+            all_users_att_med[user_id] = user_attn_med_blink
+            
+            #loading alpha, beta,...
+            user_alpha_beta_data = get_user_alpha_beta(user_id)
+            all_users_alpha_beta[user_id] = user_alpha_beta_data
+            user_alpha_beta_blink = generate_user_blink_alpha_beta(user_slide_data, user_alpha_beta_data)
+            with open(PROCESSED_PATH+user_id+"/blink_alpha_beta.json", "w") as fp:
+                fp.write(json.dumps(user_alpha_beta_blink))
+            all_users_alpha_beta[user_id] = user_alpha_beta_blink
+                        
+ 
+    with open(ALL_USER_PROCESSED_PATH+"/blink_att_med.json", "w") as fp: 
+        fp.write(json.dumps(all_users_att_med))                     
+            
+    with open(ALL_USER_PROCESSED_PATH+"/blink_alpha_beta.json", "w") as fp: 
+        fp.write(json.dumps(all_users_alpha_beta))    
             
             
 def load_meta_data():
@@ -294,12 +444,8 @@ def get_user_alpha_beta(user_id):
             alpha_beta_data.append(line_list)          
     return alpha_beta_data
                
-    
 
-if __name__ == "__main__":
-    load_meta_data()
-    #load_processed_data()
-    
+def compute_correlations_basic():
     """ Calculating Correlation coeff for Attention and Meditation"""
     attn_feature_list = generate_all_user_attn_med_features('attn')
     med_feature_list = generate_all_user_attn_med_features('med')
@@ -325,6 +471,44 @@ if __name__ == "__main__":
     compute_correlation_coeff(low_gamma_feature_list)
     compute_correlation_coeff(mid_gamma_feature_list)    
 
+def compute_correlations_blink():
+    """ Calculating Correlation coeff for Attention and Meditation"""
+    attn_feature_list = generate_all_user_attn_med_features('attn')
+    med_feature_list = generate_all_user_attn_med_features('med')
+    compute_correlation_coeff(attn_feature_list)
+    compute_correlation_coeff(med_feature_list)
+    
+    """ Calculating Correlation coeff for Alpha, Beta, Gamma,... """    
+    delta_feature_list = generate_all_user_alpha_beta_features('delta')
+    theta_feature_list = generate_all_user_alpha_beta_features('theta')
+    low_alpha_feature_list = generate_all_user_alpha_beta_features('low_alpha')
+    high_alpha_feature_list = generate_all_user_alpha_beta_features('high_alpha')
+    low_beta_feature_list = generate_all_user_alpha_beta_features('low_beta')
+    high_beta_feature_list = generate_all_user_alpha_beta_features('high_beta')
+    low_gamma_feature_list = generate_all_user_alpha_beta_features('low_gamma')
+    mid_gamma_feature_list = generate_all_user_alpha_beta_features('mid_gamma')
+    
+    compute_correlation_coeff(delta_feature_list)
+    compute_correlation_coeff(theta_feature_list)    
+    compute_correlation_coeff(low_alpha_feature_list)
+    compute_correlation_coeff(high_alpha_feature_list)    
+    compute_correlation_coeff(low_beta_feature_list)
+    compute_correlation_coeff(high_beta_feature_list)    
+    compute_correlation_coeff(low_gamma_feature_list)
+    compute_correlation_coeff(mid_gamma_feature_list) 
+    
+    
+if __name__ == "__main__":
+    load_meta_data()
+    generate_blink_data()
+    
+    
+    
+    
+    #load_processed_data()
+    #compute_correlations_basic()
+    #compute_correlations_blink()
+    
    
    
     #load_processed_expt_data()

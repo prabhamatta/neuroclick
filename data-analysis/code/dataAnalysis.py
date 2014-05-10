@@ -15,36 +15,36 @@ LABEL_DATA = []
 PROCESSED_PATH = "../processed_data/"
 ALL_USER_PROCESSED_PATH = "../all_user_processed_data/"
 
-BLINK_TIME = {
-    'BLINK_START_TEX_SHORT': 1,
-    'BLINK_END_TEX_SHORT' : 5,
-    'BLINK_START_TEX_LONG' : 3,
-    'BLINK_END_TEX_LONG' : 12,
-    'BLINK_START_PIC_PIC' : 2,
-    'BLINK_END_PIC_PIC' : 4,
-    'BLINK_START_VID_SHORT' :2,
-    'BLINK_END_VID_SHORT' : 5,
-    'BLINK_START_VID_LONG' : 15,
-    'BLINK_END_VID_LONG' : 35,
-    'BLINK_START_BAS_BASELINE':2,
-    'BLINK_END_BAS_BASELINE' : 6,
-}
-
-
 #BLINK_TIME = {
     #'BLINK_START_TEX_SHORT': 1,
     #'BLINK_END_TEX_SHORT' : 5,
-    #'BLINK_START_TEX_LONG' : 1,
-    #'BLINK_END_TEX_LONG' : 5,
-    #'BLINK_START_PIC_PIC' : 1,
-    #'BLINK_END_PIC_PIC' : 5,
-    #'BLINK_START_VID_SHORT' :1,
+    #'BLINK_START_TEX_LONG' : 3,
+    #'BLINK_END_TEX_LONG' : 12,
+    #'BLINK_START_PIC_PIC' : 2,
+    #'BLINK_END_PIC_PIC' : 4,
+    #'BLINK_START_VID_SHORT' :2,
     #'BLINK_END_VID_SHORT' : 5,
-    #'BLINK_START_VID_LONG' : 1,
-    #'BLINK_END_VID_LONG' : 5,
-    #'BLINK_START_BAS_BASELINE':1,
-    #'BLINK_END_BAS_BASELINE' : 5,
+    #'BLINK_START_VID_LONG' : 15,
+    #'BLINK_END_VID_LONG' : 35,
+    #'BLINK_START_BAS_BASELINE':2,
+    #'BLINK_END_BAS_BASELINE' : 6,
 #}
+
+
+BLINK_TIME = {
+    'BLINK_START_TEX_SHORT': 1,
+    'BLINK_END_TEX_SHORT' : 5,
+    'BLINK_START_TEX_LONG' : 1,
+    'BLINK_END_TEX_LONG' : 5,
+    'BLINK_START_PIC_PIC' : 1,
+    'BLINK_END_PIC_PIC' : 5,
+    'BLINK_START_VID_SHORT' :1,
+    'BLINK_END_VID_SHORT' : 5,
+    'BLINK_START_VID_LONG' : 1,
+    'BLINK_END_VID_LONG' : 5,
+    'BLINK_START_BAS_BASELINE':1,
+    'BLINK_END_BAS_BASELINE' : 5,
+}
 
 
 
@@ -599,29 +599,29 @@ def generate_all_user_alpha_beta_features(alpha_beta_flag, norm_flag=False):
 
     #print len(alpha_beta_feature_list)
     if alpha_beta_flag == "delta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_delta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_delta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))        
         
     elif alpha_beta_flag == "theta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_theta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_theta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))                
     elif alpha_beta_flag == "low_alpha":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_alpha.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_alpha.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))          
     elif alpha_beta_flag == "high_alpha":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_high_alpha.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_high_alpha.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))            
     elif alpha_beta_flag == "low_beta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_beta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_beta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))         
     elif alpha_beta_flag == "high_beta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_high_beta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_high_beta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))          
     elif alpha_beta_flag == "low_gamma":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_gamma.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_gamma.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))            
     elif alpha_beta_flag == "mid_gamma":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_mid_gamma.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_mid_gamma.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))          
     
     return alpha_beta_feature_list

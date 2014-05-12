@@ -14,6 +14,7 @@ META_DATA = {}
 LABEL_DATA = []
 PROCESSED_PATH = "../processed_data/"
 ALL_USER_PROCESSED_PATH = "../all_user_processed_data/"
+SURVEY_PROCESSED_PATH = "../expt_survey_data/"
 
 #BLINK_TIME = {
     #'BLINK_START_TEX_SHORT': 1,
@@ -263,7 +264,7 @@ def load_processed_data():
            
             #loading attn and med data  
             user_att_med = get_user_att_med(user_id)
-            all_users_att_med[user_id] = user_att_med
+            #all_users_att_med[user_id] = user_att_med
             user_attn_med_avg = generate_user_avg_attn(user_slide_data, user_att_med)
             with open(PROCESSED_PATH+user_id+"/avg_att_med.json", "w") as fp:
                 fp.write(json.dumps(user_attn_med_avg))
@@ -272,13 +273,13 @@ def load_processed_data():
             #loading alpha, beta,...
             user_alpha_beta_data,normalized_alpha_beta_data  = get_user_alpha_beta(user_id)
             
-            all_users_alpha_beta[user_id] = user_alpha_beta_data
+            #all_users_alpha_beta[user_id] = user_alpha_beta_data
             user_alpha_beta_avg = generate_user_avg_alpha_beta(user_slide_data, user_alpha_beta_data)
             with open(PROCESSED_PATH+user_id+"/avg_alpha_beta.json", "w") as fp:
                 fp.write(json.dumps(user_alpha_beta_avg))
             all_users_alpha_beta[user_id] = user_alpha_beta_avg
             
-            norm_all_users_alpha_beta[user_id] = normalized_alpha_beta_data
+            #norm_all_users_alpha_beta[user_id] = normalized_alpha_beta_data
             norm_user_alpha_beta_avg = generate_user_norm_alpha_beta(user_slide_data, normalized_alpha_beta_data)
             with open(PROCESSED_PATH+user_id+"/norm_avg_alpha_beta.json", "w") as fp:
                 fp.write(json.dumps(norm_user_alpha_beta_avg))
@@ -404,7 +405,6 @@ def generate_blink_data():
            
             #loading attn and med data  
             user_att_med = get_user_att_med(user_id)
-            all_users_att_med[user_id] = user_att_med
             user_attn_med_blink = generate_user_blink_attn(user_slide_data, user_att_med)
             with open(PROCESSED_PATH+user_id+"/blink_att_med.json", "w") as fp:
                 fp.write(json.dumps(user_attn_med_blink))
@@ -412,7 +412,6 @@ def generate_blink_data():
             
             #loading alpha, beta,...
             user_alpha_beta_data,normalized_alpha_beta_data = get_user_alpha_beta(user_id)
-            all_users_alpha_beta[user_id] = user_alpha_beta_data
             user_alpha_beta_blink = generate_user_blink_alpha_beta(user_slide_data, user_alpha_beta_data)
             with open(PROCESSED_PATH+user_id+"/blink_alpha_beta.json", "w") as fp:
                 fp.write(json.dumps(user_alpha_beta_blink))
@@ -560,7 +559,7 @@ def generate_all_user_blink_attn_med_features(attn_med_flag):
 
              
 def generate_all_user_alpha_beta_features(alpha_beta_flag, norm_flag=False):
-    print "BLINK DATA for ==============================================", alpha_beta_flag 
+    print "AVERAGE DATA for ==============================================", alpha_beta_flag 
        
     if alpha_beta_flag == "delta":
         val = 0
@@ -579,11 +578,15 @@ def generate_all_user_alpha_beta_features(alpha_beta_flag, norm_flag=False):
     elif alpha_beta_flag == "mid_gamma":
         val =7       
     
+    with open(SURVEY_PROCESSED_PATH+"/user_gender.json", "r") as fgender:
+        all_user_gender_meta = json.loads(fgender.read())    
     all_users_alpha_beta = load_all_alpha_beta_data(norm_flag)
     num_users = len(all_users_alpha_beta)
     num_stimulus = len(all_users_alpha_beta['101'])
     alpha_beta_feature_list = []
     alpha_beta_dict = {}
+    gender_alpha_beta_dict = {'M':{}, 'F':{}}
+    gender_alpha_beta_feature_list = {'M':[], 'F':[]}
     all_103_29_feature_list =  {'TEX_SHORT':[], 'TEX_LONG':[], 'PIC_PIC':[], 'VID_SHORT':[],'VID_LONG':[], 'BAS_BASELINE':[]}  
     all_103_29_label_list =  {'TEX_SHORT':[], 'TEX_LONG':[], 'PIC_PIC':[], 'VID_SHORT':[],'VID_LONG':[], 'BAS_BASELINE':[]}  
         
@@ -600,7 +603,22 @@ def generate_all_user_alpha_beta_features(alpha_beta_flag, norm_flag=False):
                 alpha_beta_dict[i].append(feature_val)
             else:
                 alpha_beta_dict[i] = [feature_val]
-
+                
+                       
+            # to compute for genders
+            if all_user_gender_meta[user] == 'M':
+                if i in gender_alpha_beta_dict['M']:
+                    gender_alpha_beta_dict['M'][i].append(feature_val)
+                else:
+                    gender_alpha_beta_dict['M'][i] = [feature_val]                 
+            else:
+                if i in gender_alpha_beta_dict['F']:
+                    gender_alpha_beta_dict['F'][i].append(feature_val)
+                else:
+                    gender_alpha_beta_dict['F'][i] = [feature_val]                
+                
+                
+                
     temp_feat = []
     temp_labels = []
     for sti_tag, feat in all_103_29_feature_list.items():
@@ -613,34 +631,52 @@ def generate_all_user_alpha_beta_features(alpha_beta_flag, norm_flag=False):
     
     for i in range(1, num_stimulus+1):
         alpha_beta_feature_list.append(round(sum(alpha_beta_dict[i])/len(alpha_beta_dict[i]),3))
+        gender_alpha_beta_feature_list['M'].append(round(sum(gender_alpha_beta_dict['M'][i])/len(gender_alpha_beta_dict['M'][i]),3))
+        gender_alpha_beta_feature_list['F'].append(round(sum(gender_alpha_beta_dict['F'][i])/len(gender_alpha_beta_dict['F'][i]),3))
 
     #print len(alpha_beta_feature_list)
     if alpha_beta_flag == "delta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_delta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_delta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))        
+        with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_avg_delta.json", "w") as fp:
+            fp.write(json.dumps(gender_alpha_beta_feature_list))                    
         
     elif alpha_beta_flag == "theta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_theta.json", "w") as fp:
-            fp.write(json.dumps(alpha_beta_feature_list))                
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_theta.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))   
+        with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_avg_theta.json", "w") as fp:
+            fp.write(json.dumps(gender_alpha_beta_feature_list))              
     elif alpha_beta_flag == "low_alpha":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_alpha.json", "w") as fp:
-            fp.write(json.dumps(alpha_beta_feature_list))          
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_alpha.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list)) 
+        with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_avg_low_alpha.json", "w") as fp:
+            fp.write(json.dumps(gender_alpha_beta_feature_list))
     elif alpha_beta_flag == "high_alpha":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_high_alpha.json", "w") as fp:
-            fp.write(json.dumps(alpha_beta_feature_list))            
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_high_alpha.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))  
+        with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_avg_high_alpha.json", "w") as fp:
+            fp.write(json.dumps(gender_alpha_beta_feature_list))    
     elif alpha_beta_flag == "low_beta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_beta.json", "w") as fp:
-            fp.write(json.dumps(alpha_beta_feature_list))         
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_beta.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))  
+        with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_avg_low_beta.json", "w") as fp:
+            fp.write(json.dumps(gender_alpha_beta_feature_list))        
     elif alpha_beta_flag == "high_beta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_high_beta.json", "w") as fp:
-            fp.write(json.dumps(alpha_beta_feature_list))          
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_high_beta.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list)) 
+        with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_avg_high_beta.json", "w") as fp:
+            fp.write(json.dumps(gender_alpha_beta_feature_list))        
     elif alpha_beta_flag == "low_gamma":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_gamma.json", "w") as fp:
-            fp.write(json.dumps(alpha_beta_feature_list))            
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_gamma.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list)) 
+        with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_low_gamma.json", "w") as fp:
+            fp.write(json.dumps(gender_alpha_beta_feature_list))    
     elif alpha_beta_flag == "mid_gamma":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_mid_gamma.json", "w") as fp:
-            fp.write(json.dumps(alpha_beta_feature_list))          
-    
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_mid_gamma.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list)) 
+        with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_mid_gamma.json", "w") as fp:
+            fp.write(json.dumps(gender_alpha_beta_feature_list))             
+
     return alpha_beta_feature_list
 
 
@@ -651,7 +687,7 @@ def load_all_blink_alpha_beta_data(norm_flag=False):
         return all_users_att_med
     
 def generate_all_user_blink_alpha_beta_features(alpha_beta_flag, norm_flag=False):
-    print "AVERAGES DATA for ==============================================", alpha_beta_flag 
+    print "BLINK DATA for ==============================================", alpha_beta_flag 
        
     if alpha_beta_flag == "delta":
         val = 0
@@ -703,34 +739,34 @@ def generate_all_user_blink_alpha_beta_features(alpha_beta_flag, norm_flag=False
     #print "********",compute_correlation_coeff_feat_label(temp_feat,temp_labels ) 
     
     for i in range(1, num_stimulus+1):
-        alpha_beta_feature_list.append(round(sum(alpha_beta_dict[i])/len(alpha_beta_dict[i]),3))
+        alpha_beta_feature_list.append(round(sum(alpha_beta_dict[i])/len(alpha_beta_dict[i]),3))        
 
     #print len(alpha_beta_feature_list)
     if alpha_beta_flag == "delta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_delta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_delta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))        
         
     elif alpha_beta_flag == "theta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_theta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_theta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))                
     elif alpha_beta_flag == "low_alpha":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_alpha.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_alpha.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))          
     elif alpha_beta_flag == "high_alpha":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_high_alpha.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_high_alpha.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))            
     elif alpha_beta_flag == "low_beta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_beta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_beta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))         
     elif alpha_beta_flag == "high_beta":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_high_beta.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_high_beta.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))          
     elif alpha_beta_flag == "low_gamma":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_low_gamma.json", "w") as fp:
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_low_gamma.json", "w") as fp:
             fp.write(json.dumps(alpha_beta_feature_list))            
     elif alpha_beta_flag == "mid_gamma":
-        with open(ALL_USER_PROCESSED_PATH+"/all_slides_avg_mid_gamma.json", "w") as fp:
-            fp.write(json.dumps(alpha_beta_feature_list))          
+        with open(ALL_USER_PROCESSED_PATH+"/all_slides_blink_mid_gamma.json", "w") as fp:
+            fp.write(json.dumps(alpha_beta_feature_list))           
     
     return alpha_beta_feature_list
 
@@ -870,8 +906,6 @@ def compute_correlations_blink():
     compute_correlation_coeff(mid_gamma_feature_list) 
     
     
-
-
 def compute_correlations_gender():
     with open(ALL_USER_PROCESSED_PATH+"/gender_all_slides_avg_att.json", "r") as fattn:
         mf_attention = json.loads(fattn.read())
@@ -893,16 +927,27 @@ def compute_correlations_gender():
         mf_med_blink = json.loads(fmed_blink.read())
     compute_correlation_coeff(mf_med_blink['M'])
     compute_correlation_coeff(mf_med_blink['F'])
-                    
+
+
+#def generate_all_gender_alpha_beta():
+   
+    #with open(ALL_USER_PROCESSED_PATH+"/avg_alpha_beta.json", "r") as fr:
+        #all_users_alpha_beta = json.loads(fr.read())
+    #for userid, stimulus_alpha_beta  in all_users_alpha_beta.items():
+        #for stimulus,alpha_beta_list in stimulus_alpha_beta:
+            
+        
+        
+        
 
 if __name__ == "__main__":
     load_meta_data()
-    generate_blink_data()
+    #generate_blink_data()
 
     #load_processed_data() # creates processed data for basic correlations and normalized correlations
     
     #compute_correlations_normalized()
-    #compute_correlations_basic()
+    compute_correlations_basic()
     #compute_correlations_blink()
     
     #compute_correlations_gender()

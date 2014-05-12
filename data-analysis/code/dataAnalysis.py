@@ -942,13 +942,13 @@ def compute_correlations_gender():
 
 if __name__ == "__main__":
     load_meta_data()
-    #generate_blink_data()
+    generate_blink_data()
 
     #load_processed_data() # creates processed data for basic correlations and normalized correlations
     
     #compute_correlations_normalized()
-    compute_correlations_basic()
-    #compute_correlations_blink()
+    #compute_correlations_basic()
+    compute_correlations_blink()
     
     #compute_correlations_gender()
     

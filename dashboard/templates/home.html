@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>52 Sprouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="static/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="static/css/style.css" rel="stylesheet" media="screen">
+    <!-- Parse -->
+    <script src="http://www.parsecdn.com/js/parse-1.2.7.min.js"></script>
+  </head>
+  <body>
+         <div class="nav-collapse collapse">
+            <!-- .nav, .navbar-search, .navbar-form, etc -->
+            <ul class="nav">
+              <li>
+                <a href="about">About</a>
+              </li>
+              <li>
+                <a href="team">Team</a>
+              </li>
+              <li>
+                <a href="https://twitter.com/52sprouts">@52sprouts</a>
+              </li>
+            </ul>
+          </div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+     
+{#          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->#}
+{#          <a class="btn btn-navbar sprout-btn" data-toggle="collapse" data-target=".nav-collapse">#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#          </a>#}
+     
+          <!-- Be sure to leave the brand out there if you want it shown -->
+          <a class="brand" href="#">52 Sprouts</a>
+     
+          <!-- Everything you want hidden at 940px or less, place within here -->
+          <div class="nav-collapse collapse">
+            <!-- .nav, .navbar-search, .navbar-form, etc -->
+            <ul class="nav">
+              <li>
+                <a href="about">About</a>
+              </li>
+              <li>
+                <a href="team">Team</a>
+              </li>
+              <li>
+                <a href="https://twitter.com/52sprouts">@52sprouts</a>
+              </li>
+            </ul>
+          </div>
+     
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid home">
+      <img class="logo" src="static/img/logo.png" alt="">
+      <div class="well">
+        <form id="beta">
+          <legend>Sign up for 52 Sprouts</legend>
+          <div class="control-group">
+            <!-- <label class="control-label" for="inputEmail">Email</label> -->
+            <div class="controls">
+              <input type="email" id="inputEmail" placeholder="Email">
+              <p>We'll let you know when we launch in the iOS App Store.</p>
+            </div>
+          </div>
+          <!-- <div class="control-group">
+            <div class="controls">
+              <input type="text" id="inputUDID" placeholder="UDID (Unique Device Identifier)">
+              <p><a href="http://whatsmyudid.com" target="_blank" class="hidden-phone">How do I find my UDID?</a></p>
+              <p><a href="https://itunes.apple.com/us/app/udid-sender/id306603975?mt=8" target="_blank" class="visible-phone">How do I find my UDID?</a></p>
+              <p>Since we're not in the App Store yet, we need your iPhone's UDID to allow you to install our app on your device.</p>
+            </div>
+          </div> -->
+          <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn btn-info" id="submit_button">Submit</button>
+            </div>
+          </div>
+        </form>
+        <form action="" id="thanks" class="hidden">
+          <legend>Thanks for signing up!</legend>
+          <div class="control-group">
+            <p>We'll send you an email soon.</p>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/sprouts.js"></script>
+  </body>
+</html>

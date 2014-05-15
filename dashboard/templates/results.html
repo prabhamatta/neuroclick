@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neuroclick</title>
+    <meta name="description" content="Neuroclick - collect and analyze brainwaves">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,  maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    {#        <link rel="shortcut icon" href="static/img/logo.png" type="image" />#}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src = "static/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <link rel="stylesheet" href="/static/css/jquery-ui-1.10.4.custom.min.css">
+
+
+    <script>window.jQuery || document.write('<script src="static/js/jquery-1.10.2.js"><\/script>')</script>
+    <script src="static/js/modernizr-latest.js"></script>
+
+
+    <script>
+        $(function() {
+            if(!Modernizr.svg) {
+                $('img[src*="svg"]').attr('src', function() {
+                    return $(this).attr('src').replace('.svg', '.png');
+                });
+            }
+        });
+
+    </script>
+    <script type="text/javascript" src="http://cdn.sublimevideo.net/js/pw9vgcdm.js"></script>
+
+
+</head>
+<body>
+<div id="wrapper">
+    <header>
+        <article>
+            <a href="/">
+                <img src="static/img/logo.png" alt="Neuroclick Logo">
+            </a>
+            <div id="menu-button"></div>
+            <nav id="menu">
+                <a href="about">About</a>
+                <a href="results">Results</a>
+                <a href="contact">Contact</a>
+                <a class="orange-button" id="login-button" href="/">Log In</a>
+            </nav>
+
+            <div class="login-black"></div>
+            <div class="login-panel">
+                <form name="login-form" method="post" action="">
+                    <input class="contact-reg" name="login" type="text" placeholder="Email">
+                    <input class="contact-reg" type="password" name="password" placeholder="Password">
+                    <input class="round-links" type="submit" value="Log In">
+                </form>
+
+            </div>
+
+        </article>
+
+    </header>
+
+
+    <section class="one-col how-it-works white">
+        <article>
+            <div class="section-head-result">
+                <h1>Blink Data</h1>
+                <h2>
+                    At what point is the user most attentive/ interested ?
+                </h2>
+
+            </div>
+            <!--  <div class="work-flow">
+                  <div>
+                      <img src="img/work-01.svg" alt="Design">
+                      <p>Step 1: Design and Configure Experiments</p>
+                  </div>
+                  <div>
+                      <img src="img/work-02.svg" alt="Collect data">
+                      <p>Step 2: CollectBrain wave data</p>
+                  </div>
+                  <div>
+                      <img src="img/work-03.svg" alt="Crunch the data">
+                      <p>Step 3: Crunch numbers</p>
+                  </div>
+                  <div>
+                      <img src="img/work-04.svg" alt="Get insights">
+                      <p>Step 4: Get some real and interesting insights</p>
+                  </div>
+              </div> -->
+
+
+        </article>
+
+
+         <div id="blink-data-container-video">
+
+        </div>
+
+
+        <div id="blink-data-container-text">
+
+        </div>
+
+
+        <div id="blink-data-container-alpha">
+
+        </div>
+
+        <div id="blink-data-container-alpha-gender">
+
+        </div>
+
+
+        <div id="blink-data-container-beta">
+
+        </div>
+
+
+        <div id="blink-data-container-beta-gender">
+
+        </div>
+
+
+
+
+        <div id="blink-data-container-gamma">
+
+        </div>
+
+
+        <div id="blink-data-container-gamma-gender">
+
+        </div>
+
+
+
+
+
+
+<!--        <div id="blink-data-gender-container-line-beta">
+
+        </div>
+
+        <div id="blink-data-gender-container-line-alpha">
+
+        </div>
+
+
+
+        <div id="blink-data-gender-container-1" style="width: 100%">
+
+        </div>
+
+        <div id="blink-data-gender-container-meditation" style="width: 100%">
+
+        </div>
+-->
+
+
+
+    </section>
+
+
+</div>
+<script src="static/js/results.js"></script>
+</body>
+</html>

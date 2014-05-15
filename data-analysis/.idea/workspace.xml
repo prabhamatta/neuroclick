@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1681ba4e-918a-47a2-a0a9-1cc48316ebe5" name="Default" comment="" />
-    <ignored path="neuroclick-app.iws" />
+    <list default="true" id="087526a2-79dd-45e6-a802-459e6d3fe3b8" name="Default" comment="" />
+    <ignored path="data-analysis.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +12,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/neuroclick-app$dash.coverage" NAME="dash Coverage Results" MODIFIED="1400024272321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../dashboard" />
+    <SUITE FILE_PATH="coverage/data-analysis$dataProcessing.coverage" NAME="dataProcessing Coverage Results" MODIFIED="1397470821490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/brainchart" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -22,80 +22,47 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="neuroclick-app" />
+    <favorites_list name="data-analysis" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="results.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dashboard/templates/results.html">
+      <file leaf-file-name="data_processing.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/brainchart/data/data_processing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="50" selection-start="3701" selection-end="3734" vertical-scroll-proportion="0.0" vertical-offset="1509" max-vertical-offset="2670">
+            <state line="21" column="20" selection-start="821" selection-end="821" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="975">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dash.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../dashboard/dash.py">
+      <file leaf-file-name="attention.csv" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/brainchart/data/attention.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="220" column="2" selection-start="8133" selection-end="8133" vertical-scroll-proportion="0.41066283" vertical-offset="2745" max-vertical-offset="4335">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15135">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="temp.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/brainchart/temp.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dataProcessing.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/brainchart/dataProcessing.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="147" column="16" selection-start="4510" selection-end="4510" vertical-scroll-proportion="0.52554744" vertical-offset="1989" max-vertical-offset="2400">
               <folding>
-                <element signature="e#7381#8128#0" expanded="false" />
+                <element signature="e#27#36#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dataProcessing.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../data-analysis/code/dataProcessing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="44" selection-start="4776" selection-end="4781" vertical-scroll-proportion="0.0" vertical-offset="1950" max-vertical-offset="2385">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dataAnalysis.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../data-analysis/code/dataAnalysis.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="583" column="4" selection-start="23695" selection-end="23695" vertical-scroll-proportion="0.0" vertical-offset="8745" max-vertical-offset="14400">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="socket.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="223" column="0" selection-start="7712" selection-end="7712" vertical-scroll-proportion="0.0" vertical-offset="3345" max-vertical-offset="8685">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="results.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dashboard/static/js/results.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="261" column="30" selection-start="6622" selection-end="6622" vertical-scroll-proportion="0.0" vertical-offset="3915" max-vertical-offset="10080">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="blink_alpha_beta.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../data-analysis/all_user_processed_data/blink_alpha_beta.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../dashboard/static/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1391" column="13" selection-start="32885" selection-end="32888" vertical-scroll-proportion="0.0" vertical-offset="20436" max-vertical-offset="30045">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -110,22 +77,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/../data-analysis/code/dataProcessing.py" />
-        <option value="$USER_HOME$/Downloads/neuroclick_dashboard/index.html" />
-        <option value="$PROJECT_DIR$/../dashboard/static/js/dash.js" />
-        <option value="$USER_HOME$/Downloads/neuroclickdashboardtopbar/wikirecruitment.css" />
-        <option value="$USER_HOME$/Downloads/neuroclickdashboardtopbar/wikirecruitment.html" />
-        <option value="$PROJECT_DIR$/../dashboard/static/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/../dashboard/templates/wikirecruitment.html" />
-        <option value="$PROJECT_DIR$/../dashboard/static/css/dash.css" />
-        <option value="$PROJECT_DIR$/../dashboard/static/css/navbar.css" />
-        <option value="$PROJECT_DIR$/../dashboard/templates/dash.html" />
-        <option value="$PROJECT_DIR$/../dashboard/templates/landing.html" />
-        <option value="$PROJECT_DIR$/../dashboard/static/css/style.css" />
-        <option value="$PROJECT_DIR$/../dashboard/templates/results.html" />
-        <option value="$PROJECT_DIR$/../dashboard/static/js/results.js" />
-        <option value="$PROJECT_DIR$/../dashboard/dash.py" />
+        <option value="$PROJECT_DIR$/brainchart/dataProcessing.py" />
       </list>
     </option>
   </component>
@@ -165,13 +117,13 @@
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="neuroclick-app" />
+              <option name="myItemId" value="data-analysis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="neuroclick-app" />
+              <option name="myItemId" value="data-analysis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -181,11 +133,15 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="neuroclick-app" />
+              <option name="myItemId" value="data-analysis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="neuroclick-app" />
+              <option name="myItemId" value="data-analysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="brainchart" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -198,10 +154,9 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dashboard" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../neuroclick-app" />
     <property name="FullScreen" value="false" />
-    <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -210,40 +165,21 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.dash">
-    <configuration default="false" name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.dataProcessing">
+    <configuration default="false" name="dataProcessing" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/brainchart" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="neuroclick-app" />
+      <module name="data-analysis" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="dash" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../dashboard" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="dashboard" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../dashboard/dash.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/brainchart/dataProcessing.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
@@ -280,7 +216,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="neuroclick-app" />
+      <module name="data-analysis" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -305,7 +241,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="neuroclick-app" />
+      <module name="data-analysis" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -329,7 +265,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="neuroclick-app" />
+      <module name="data-analysis" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
@@ -344,7 +280,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="neuroclick-app" />
+      <module name="data-analysis" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -370,7 +306,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="neuroclick-app" />
+      <module name="data-analysis" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -390,7 +326,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="neuroclick-app" />
+      <module name="data-analysis" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="CLASS_NAME" value="" />
@@ -401,34 +337,12 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="neuroclick-app" type="PythonConfigurationType" factoryName="Python" singleton="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="neuroclick-app" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mindwavesocket.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Python.neuroclick-app" />
-      <item index="1" class="java.lang.String" itemvalue="Python.run" />
-      <item index="2" class="java.lang.String" itemvalue="Python.dash" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Python.dataProcessing" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.dash" />
-        <item index="1" class="java.lang.String" itemvalue="Python.run" />
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Python.dataProcessing" />
       </list>
     </recent_temporary>
   </component>
@@ -452,14 +366,14 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1681ba4e-918a-47a2-a0a9-1cc48316ebe5" name="Default" comment="" />
-      <created>1395366467911</created>
-      <updated>1395366467911</updated>
+      <changelist id="087526a2-79dd-45e6-a802-459e6d3fe3b8" name="Default" comment="" />
+      <created>1397443461061</created>
+      <updated>1397443461061</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1436" height="878" extended-state="7" />
+    <frame x="4" y="22" width="1436" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -467,11 +381,11 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2913669" sideWeight="0.5804749" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30647483" sideWeight="0.5963061" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39973614" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41952506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40369394" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -481,11 +395,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -499,109 +408,114 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/../dashboard/dash.py</url>
-          <line>93</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/brainchart/dataProcessing.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../dashboard/static/css/navbar.css">
+    <entry file="file://$PROJECT_DIR$/brainchart/data/data_processing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="0" selection-start="807" selection-end="807" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="4080" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../data-analysis/all_user_processed_data/all_slides_avg_mid_gamma.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="694" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/templates/wikirecruitment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="0" selection-start="2103" selection-end="2103" vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="3150" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/neuroclickdashboardtopbar/wikirecruitment.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="194" column="23" selection-start="0" selection-end="4235" vertical-scroll-proportion="0.0" vertical-offset="2910" max-vertical-offset="3840" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/static/css/dash.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="0" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="1125" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/static/js/dash.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="34" selection-start="2053" selection-end="2053" vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="2640" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1590" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/templates/landing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="746" selection-end="746" vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="2700" />
-      </provider>
-    </entry>
-    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/socket.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="223" column="0" selection-start="7712" selection-end="7712" vertical-scroll-proportion="0.0" vertical-offset="3158" max-vertical-offset="8640">
+        <state line="21" column="20" selection-start="821" selection-end="821" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../data-analysis/all_user_processed_data/blink_alpha_beta.json">
+    <entry file="file://$PROJECT_DIR$/brainchart/data/attention.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="12" selection-start="12" selection-end="12" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="90">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15135">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/temp.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../data-analysis/code/dataProcessing.py">
+    <entry file="file://$PROJECT_DIR$/brainchart/dataProcessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="44" selection-start="4776" selection-end="4781" vertical-scroll-proportion="0.0" vertical-offset="1950" max-vertical-offset="2385">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../data-analysis/code/dataAnalysis.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="583" column="4" selection-start="23695" selection-end="23695" vertical-scroll-proportion="0.0" vertical-offset="8377" max-vertical-offset="14280">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/templates/results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="50" selection-start="3701" selection-end="3734" vertical-scroll-proportion="0.0" vertical-offset="1509" max-vertical-offset="2670">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/static/js/results.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="261" column="30" selection-start="6622" selection-end="6622" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="4590">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1391" column="13" selection-start="32885" selection-end="32888" vertical-scroll-proportion="0.0" vertical-offset="20436" max-vertical-offset="30045">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dashboard/dash.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="220" column="2" selection-start="8133" selection-end="8133" vertical-scroll-proportion="0.41066283" vertical-offset="2745" max-vertical-offset="4335">
+        <state line="80" column="18" selection-start="2485" selection-end="2485" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="2250">
           <folding>
-            <element signature="e#7381#8128#0" expanded="false" />
+            <element signature="e#27#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/data/data_processing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="20" selection-start="821" selection-end="821" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/data/data.tsv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-14.371901" vertical-offset="5217" max-vertical-offset="5580" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/data/attention.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15135">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/timeseries.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6405" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/data/meditation.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15135" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/data/john.combined.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="3" selection-start="383" selection-end="383" vertical-scroll-proportion="0.74380165" vertical-offset="0" max-vertical-offset="15210" />
+      </provider>
+      <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/temp.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../neuroclick-app/data/103/slide_timestamps.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="377" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/brainchart/dataProcessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="147" column="16" selection-start="4510" selection-end="4510" vertical-scroll-proportion="0.52554744" vertical-offset="1989" max-vertical-offset="2400">
+          <folding>
+            <element signature="e#27#36#0" expanded="true" />
           </folding>
         </state>
       </provider>

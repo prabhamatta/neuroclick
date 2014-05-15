@@ -300,8 +300,8 @@ def compute_correlations_blink():
                 
 if __name__ == "__main__":
     load_meta_data()
-    #compute_correlations_basic()
-    compute_correlations_blink()
+    compute_correlations_basic()
+    #compute_correlations_blink()
     
 
 
